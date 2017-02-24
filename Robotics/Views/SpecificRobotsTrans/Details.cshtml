@@ -1,0 +1,95 @@
+@model Robotics.Models.SpecificRobotsTrans
+@using Robotics.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject RoboticsContext _context
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listspecificrobotsinrelation = _context.SpecificRobotsInRelation;
+    var ContributingFieldsTrans = _context.ContributingFieldsTrans.Include(a => a.ContributingfieldsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.Include(a => a.ModesoflocomotionNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.Include(a => a.RoboticsprinciplesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var IndustriesTrans = _context.SpecificRobotsInRelation.Include(a => a.IndustriesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var TypesTrans = _context.TypesTrans.Include(a => a.TypesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.Include(a => a.RobotcomponentsanddesignfeaturesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.Include(a => a.RoboticsdevelopmentanddevelopmenttoolsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.Include(a => a.RoboticscompaniesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.Include(a => a.RoboticsorganizationsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.Include(a => a.RoboticscompetitionsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.Include(a => a.InfluentialpeopleNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.Include(a => a.DegreeofmaturityNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+
+
+ 
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SpecificRobotsTrans</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LanguageNavigation.Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecificrobotsNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpecificrobotsNavigation.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>|
+    <a asp-action="Create" asp-controller="SpecificRobotsInRelations" asp-route-specificrobots="@Model.Specificrobots">Create Relation</a><br />
+    <a asp-action="Index" asp-controller="SpecificRobotsInRelations" asp-route-specificrobots="@Model.Specificrobots">Index of Relations</a><br />
+
+</div>
+
+<div>
+    <h4>SpecificRobotsInRelation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        @foreach (var item in listspecificrobotsinrelation)
+        {
+
+            @if (item.Specificrobots == Model.Id)
+            {
+                <dt>
+                    Contributing Fields
+                </dt>
+                @foreach (var i in ContributingFieldsTrans)
+                {
+                    @if (item.ContributingfieldsNavigation.Id == i.Id)
+                    {
+                        <dd>
+                            @i.Name
+                        </dd>
+                    }
+                }
+
+
+            }
+        }
+    </dl>
+</div>

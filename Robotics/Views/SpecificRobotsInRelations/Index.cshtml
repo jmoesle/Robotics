@@ -1,0 +1,108 @@
+@model IEnumerable<Robotics.Models.SpecificRobotsInRelation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContributingfieldsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DegreeofmaturityNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndustriesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InfluentialpeopleNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModesoflocomotionNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobotcomponentsanddesignfeaturesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticscompaniesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticscompetitionsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsdevelopmentanddevelopmenttoolsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsorganizationsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsprinciplesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecificrobotsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypesNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContributingfieldsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DegreeofmaturityNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndustriesNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InfluentialpeopleNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModesoflocomotionNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RobotcomponentsanddesignfeaturesNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoboticscompaniesNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoboticscompetitionsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoboticsdevelopmentanddevelopmenttoolsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoboticsorganizationsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoboticsprinciplesNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecificrobotsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypesNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

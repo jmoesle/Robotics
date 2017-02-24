@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer LocOptions
+
+@{
+    ViewData["Title"] = LocOptions["Base Page"];
+}
+<h2>@ViewData["Title"]</h2>
+<h4> Meine Seite</h4>

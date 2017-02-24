@@ -1,0 +1,121 @@
+@model Robotics.Models.SpecificRobotsInRelation
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>SpecificRobotsInRelation</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Specificrobots" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Specificrobots" class="form-control" asp-items="ViewBag.Specificrobots"></select>
+                <span asp-validation-for="Specificrobots" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Modesoflocomotion" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Modesoflocomotion" class="form-control" asp-items="ViewBag.Modesoflocomotion"></select>
+                <span asp-validation-for="Modesoflocomotion" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsprinciples" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsprinciples" class="form-control" asp-items="ViewBag.Roboticsprinciples"></select>
+                <span asp-validation-for="Roboticsprinciples" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Industries" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Industries" class="form-control" asp-items="ViewBag.Industries"></select>
+                <span asp-validation-for="Industries" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contributingfields" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Contributingfields" class="form-control" asp-items="ViewBag.Contributingfields"></select>
+                <span asp-validation-for="Contributingfields" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Types" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types"></select>
+                <span asp-validation-for="Types" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Robotcomponentsanddesignfeatures" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Robotcomponentsanddesignfeatures" class="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures"></select>
+                <span asp-validation-for="Robotcomponentsanddesignfeatures" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsdevelopmentanddevelopmenttools" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools"></select>
+                <span asp-validation-for="Roboticsdevelopmentanddevelopmenttools" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompanies" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompanies" class="form-control" asp-items="ViewBag.Roboticscompanies"></select>
+                <span asp-validation-for="Roboticscompanies" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsorganizations" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsorganizations" class="form-control" asp-items="ViewBag.Roboticsorganizations"></select>
+                <span asp-validation-for="Roboticsorganizations" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompetitions" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompetitions" class="form-control" asp-items="ViewBag.Roboticscompetitions"></select>
+                <span asp-validation-for="Roboticscompetitions" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Influentialpeople" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Influentialpeople" class="form-control" asp-items="ViewBag.Influentialpeople"></select>
+                <span asp-validation-for="Influentialpeople" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Degreeofmaturity" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Degreeofmaturity" class="form-control" asp-items="ViewBag.Degreeofmaturity"></select>
+                <span asp-validation-for="Degreeofmaturity" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

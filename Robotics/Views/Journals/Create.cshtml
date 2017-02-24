@@ -1,0 +1,127 @@
+@model Robotics.Models.Journals
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Journals</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Firstnameauhor1" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Firstnameauhor1" class="form-control" />
+                <span asp-validation-for="Firstnameauhor1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lastnameauhor1" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lastnameauhor1" class="form-control" />
+                <span asp-validation-for="Lastnameauhor1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Firstnameauhor2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Firstnameauhor2" class="form-control" />
+                <span asp-validation-for="Firstnameauhor2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lastnameauhor2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lastnameauhor2" class="form-control" />
+                <span asp-validation-for="Lastnameauhor2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Firstnameauhor3" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Firstnameauhor3" class="form-control" />
+                <span asp-validation-for="Firstnameauhor3" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lastnameauhor3" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lastnameauhor3" class="form-control" />
+                <span asp-validation-for="Lastnameauhor3" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Furtherauthors" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Furtherauthors" class="form-control" />
+                <span asp-validation-for="Furtherauthors" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Journalname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Journalname" class="form-control" />
+                <span asp-validation-for="Journalname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Volume" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Volume" class="form-control" />
+                <span asp-validation-for="Volume" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Publicationdate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Publicationdate" class="form-control" />
+                <span asp-validation-for="Publicationdate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Issue" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Issue" class="form-control" />
+                <span asp-validation-for="Issue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pages" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Pages" class="form-control" />
+                <span asp-validation-for="Pages" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Url" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

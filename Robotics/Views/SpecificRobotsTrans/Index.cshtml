@@ -1,0 +1,155 @@
+@model IEnumerable<Robotics.Models.SpecificRobotsTrans>
+@using Robotics.Models
+@inject RoboticsContext _context
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    string cultureselectedshort = @Context.Request.Path;
+    if (cultureselectedshort.Length > 5)
+    {
+        cultureselectedshort = cultureselectedshort.Substring(1, 2);
+    };
+
+    List<SpecificRobots> listspecificrobots = _context.SpecificRobots.ToList();
+
+
+}
+
+<h2>@Resources.LabelForRobots- Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanguageNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecificrobotsNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var robot in listspecificrobots)
+        {
+
+            <tr>
+                <td>
+                    @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+                            {
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <h4>@Html.DisplayFor(modelItem => item.Name) [@Html.DisplayFor(modelItem => item.LanguageNavigation.Code)]</h4>
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <p>@Html.DisplayFor(modelItem => item.Name) [@Html.DisplayFor(modelItem => item.LanguageNavigation.Code)]</p>
+                                </a>
+                            }
+                        }
+
+                    }
+
+</td>
+                <td>
+                    @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+
+                            {
+                                @Html.DisplayFor(modelItem => item.Description)
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+                            {
+                                @Html.DisplayFor(modelItem => item.LanguageNavigation.Code)
+                            }
+                        }
+                    }
+            </td>
+            <td>
+                @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+                            {
+                            @Html.DisplayFor(modelItem => item.SpecificrobotsNavigation.Id)
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+                            {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <br />
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a><br />
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> <br />
+
+                        }
+                    }
+                }
+
+            </td>
+                <td>
+                    <a asp-action="Create" asp-controller ="SpecificRobotsInRelations" asp-route-specificrobots="@robot.Id">Create Relation</a><br />
+                    <a asp-action="CreateTranslation" asp-route-specificrobots="@robot.Id">Create Translation</a><br />
+                    @foreach (var item in Model)
+                    {
+                        if (@robot.Id == item.Specificrobots)
+                        {
+
+                            if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
+                            {
+
+                                @foreach (var m in Model)
+                                {
+                                    if (m.SpecificrobotsNavigation.Id == item.SpecificrobotsNavigation.Id)
+                                    {
+                                        if (m.LanguageNavigation.Code.ToLower() != cultureselectedshort)
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@m.Id"> Modify @m.LanguageNavigation.Code </a><br />
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+
+
+
+                    }
+                </tbody>
+            </table>

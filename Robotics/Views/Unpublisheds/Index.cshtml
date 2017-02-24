@@ -1,0 +1,108 @@
+@model IEnumerable<Robotics.Models.Unpublished>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Firstnameauhor1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lastnameauhor1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Firstnameauhor2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lastnameauhor2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Firstnameauhor3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lastnameauhor3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Furtherauthors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schoollocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Edition)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publicationdate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pages)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstnameauhor1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastnameauhor1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstnameauhor2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastnameauhor2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstnameauhor3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastnameauhor3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Furtherauthors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Schoollocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publicationdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pages)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

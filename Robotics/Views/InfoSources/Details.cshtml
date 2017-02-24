@@ -1,0 +1,67 @@
+@model Robotics.Models.InfoSources
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InfoSources</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BooksNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BooksNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CollectionsNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CollectionsNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JournalsNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JournalsNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewspapersNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewspapersNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficialstatementsNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OfficialstatementsNavigation.Publisher)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeriesNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeriesNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnpublishedNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnpublishedNavigation.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WebsitesNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WebsitesNavigation.Title)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

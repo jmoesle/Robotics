@@ -1,0 +1,31 @@
+@model Robotics.Models.RelatedIndustries
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RelatedIndustries</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Industry1Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Industry1Navigation.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Industry2Navigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Industry2Navigation.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,107 @@
+@model Robotics.Models.SpecificRobotsInRelation
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>SpecificRobotsInRelation</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Specificrobots" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Specificrobots" class ="form-control" asp-items="ViewBag.Specificrobots"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Modesoflocomotion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Modesoflocomotion" class ="form-control" asp-items="ViewBag.Modesoflocomotion"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsprinciples" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsprinciples" class ="form-control" asp-items="ViewBag.Roboticsprinciples"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Industries" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Industries" class ="form-control" asp-items="ViewBag.Industries"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contributingfields" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Contributingfields" class ="form-control" asp-items="ViewBag.Contributingfields"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Types" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Types" class ="form-control" asp-items="ViewBag.Types"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Robotcomponentsanddesignfeatures" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Robotcomponentsanddesignfeatures" class ="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsdevelopmentanddevelopmenttools" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class ="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompanies" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompanies" class ="form-control" asp-items="ViewBag.Roboticscompanies"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsorganizations" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsorganizations" class ="form-control" asp-items="ViewBag.Roboticsorganizations"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompetitions" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompetitions" class ="form-control" asp-items="ViewBag.Roboticscompetitions"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Influentialpeople" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Influentialpeople" class ="form-control" asp-items="ViewBag.Influentialpeople"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Degreeofmaturity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Degreeofmaturity" class ="form-control" asp-items="ViewBag.Degreeofmaturity"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

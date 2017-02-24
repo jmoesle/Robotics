@@ -1,0 +1,41 @@
+@model Robotics.Models.AddressesInRelation
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AddressesInRelation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tablename)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tablename)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tableid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tableid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressesNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddressesNavigation.Id)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

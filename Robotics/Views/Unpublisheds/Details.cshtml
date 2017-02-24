@@ -1,0 +1,97 @@
+@model Robotics.Models.Unpublished
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Unpublished</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstnameauhor1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Firstnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastnameauhor1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lastnameauhor1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstnameauhor2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Firstnameauhor2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastnameauhor2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lastnameauhor2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstnameauhor3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Firstnameauhor3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastnameauhor3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lastnameauhor3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Furtherauthors)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Furtherauthors)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Schoollocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Schoollocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Edition)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Edition)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Publicationdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Publicationdate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,54 @@
+@model Robotics.Models.SpecificRobots
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SpecificRobots</h4>
+    <hr />
+@if (Model.Specificrobotstransdata.Language == 1)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+                <td>
+                    Description:
+                </td>
+              <td>
+                  @Model.Specificrobotstransdata.Description
+              </td>
+            </tr>
+            <tr>
+                <td>
+                    Industries:
+                    <dl class="dl-horizontal">
+    @foreach (var industry in Model.Industries)
+    {
+
+        <dd>@industry.Id</dd>
+    }
+    </dl>
+                </td>
+                <td>
+                    Description @Model.Specificrobotstransdata.Description
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+}
+    <dl class="dl-horizontal"></dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
