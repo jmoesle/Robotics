@@ -23,13 +23,16 @@ namespace Robotics.Controllers
         {
            // var roboticsContext = _context.IndustriesTrans;
             var roboticsContext = _context.IndustriesTrans
-                .Include(it => it.IndustriesNavigation)
-                    .ThenInclude(ind => ind.SpecificRobotsInRelation)
-                        .ThenInclude(sr => sr.SpecificrobotsNavigation)
-                            .ThenInclude(sn => sn.Id)
-                .Include(i => i.LanguageNavigation)
-               //       .AsNoTracking()
+               .Include(it => it.IndustriesNavigation) //IndustriesNavigation
+              //   .ThenInclude(ind => ind.SpecificRobotsInRelation)
+               //       .ThenInclude(sr => sr.SpecificrobotsNavigation.Id)
+                     // .ThenInclude(sr => sr.SpeId)
+                     // .ThenInclude(sr => sr.s)
+               .Include(i => i.LanguageNavigation) // Navigation
+                //      .AsNoTracking()
                ;
+            ;
+            
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -43,6 +46,9 @@ namespace Robotics.Controllers
 
             var industriesTrans = await _context.IndustriesTrans
                 .Include(i => i.IndustriesNavigation)
+                     .ThenInclude(ind => ind.SpecificRobotsInRelation)
+                      .ThenInclude(sr => sr.SpecificrobotsNavigation)
+                   //  .ThenInclude(sn => sn.Id)
                 .Include(i => i.LanguageNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (industriesTrans == null)
@@ -143,8 +149,8 @@ namespace Robotics.Controllers
             }
 
             var industriesTrans = await _context.IndustriesTrans
-                .Include(i => i.IndustriesNavigation)
-                .Include(i => i.LanguageNavigation)
+                .Include(i => i.IndustriesNavigation) //Navigation
+                .Include(i => i.LanguageNavigation) //Navigation
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (industriesTrans == null)
             {

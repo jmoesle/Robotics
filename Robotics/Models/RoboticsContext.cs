@@ -263,13 +263,13 @@ namespace Robotics.Models
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.IndustriesNavigation)
+                entity.HasOne(d => d.IndustriesNavigation) // IndustriesNavigation
                     .WithMany(p => p.IndustriesTrans)
                     .HasForeignKey(d => d.Industries)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK__industrie__Indus__02C769E9");
 
-                entity.HasOne(d => d.LanguageNavigation)
+                entity.HasOne(d => d.LanguageNavigation) // LanguageNavigation
                     .WithMany(p => p.IndustriesTrans)
                     .HasForeignKey(d => d.Language)
                     .OnDelete(DeleteBehavior.Restrict)
@@ -567,7 +567,7 @@ namespace Robotics.Models
                     .HasForeignKey(d => d.Contributingfields)
                     .HasConstraintName("FK__robotics___Contr__7720AD13");
 
-                entity.HasOne(d => d.IndustriesNavigation)
+                entity.HasOne(d => d.IndustriesNavigation)//Navigation
                     .WithMany(p => p.RoboticsCompaniesInRelation)
                     .HasForeignKey(d => d.Industries)
                     .HasConstraintName("FK__robotics___Indus__762C88DA");
@@ -628,7 +628,7 @@ namespace Robotics.Models
 
             modelBuilder.Entity<RoboticsCompetitionsTrans>(entity =>
             {
-                entity.ToTable("robotics_competitions.trans");
+                entity.ToTable("robotics_competitions_trans");
 
                 entity.HasOne(d => d.LanguageNavigation)
                     .WithMany(p => p.RoboticsCompetitionsTrans)
@@ -845,7 +845,7 @@ namespace Robotics.Models
                     .WithMany(p => p.SpecificRobotsInRelation)
                     .HasForeignKey(d => d.Specificrobots)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__specific___Speci__084B3915");
+                    .HasConstraintName("FK_SpecificRobots_Id"); //FK__specific___Speci__084B3915
 
                 entity.HasOne(d => d.TypesNavigation)
                     .WithMany(p => p.SpecificRobotsInRelation)

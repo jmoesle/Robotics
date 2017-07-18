@@ -6,19 +6,19 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var listspecificrobotsinrelation = _context.SpecificRobotsInRelation;
-    var ContributingFieldsTrans = _context.ContributingFieldsTrans.Include(a => a.ContributingfieldsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.Include(a => a.ModesoflocomotionNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.Include(a => a.RoboticsprinciplesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var IndustriesTrans = _context.SpecificRobotsInRelation.Include(a => a.IndustriesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var TypesTrans = _context.TypesTrans.Include(a => a.TypesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.Include(a => a.RobotcomponentsanddesignfeaturesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.Include(a => a.RoboticsdevelopmentanddevelopmenttoolsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.Include(a => a.RoboticscompaniesNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.Include(a => a.RoboticsorganizationsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.Include(a => a.RoboticscompetitionsNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.Include(a => a.InfluentialpeopleNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
-    var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.Include(a => a.DegreeofmaturityNavigation).ThenInclude(a => a.SpecificRobotsInRelation);
+    var listspecificrobotsinrelation = _context.SpecificRobotsInRelation.ToList();
+    var ContributingFieldsTrans = _context.ContributingFieldsTrans.ToList();
+    var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.ToList();
+    var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.ToList();
+    var IndustriesTrans = _context.SpecificRobotsInRelation.ToList();
+    var TypesTrans = _context.TypesTrans.ToList();
+    var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.ToList();
+    var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
+    var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.ToList();
+    var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.ToList();
+    var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.ToList();
+    var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.ToList();
+    var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.ToList();
 
 
  
@@ -68,22 +68,23 @@
 <div>
     <h4>SpecificRobotsInRelation</h4>
     <hr />
+
     <dl class="dl-horizontal">
         
         @foreach (var item in listspecificrobotsinrelation)
         {
 
-            @if (item.Specificrobots == Model.Id)
+            @if (item.Specificrobots == Model.Specificrobots)
             {
                 <dt>
                     Contributing Fields
                 </dt>
-                @foreach (var i in ContributingFieldsTrans)
+                @foreach (var contfield in ContributingFieldsTrans)
                 {
-                    @if (item.ContributingfieldsNavigation.Id == i.Id)
+                    @if (item.Contributingfields == contfield.Contributingfields)
                     {
                         <dd>
-                            @i.Name
+                            <a asp-action="Details" asp-controller="ContributingFieldsTrans" asp-route-id="@item.Id">@contfield.Name</a><br />
                         </dd>
                     }
                 }

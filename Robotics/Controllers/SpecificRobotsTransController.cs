@@ -21,7 +21,9 @@ namespace Robotics.Controllers
         // GET: SpecificRobotsTrans
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.SpecificRobotsTrans.Include(s => s.LanguageNavigation).Include(s => s.SpecificrobotsNavigation);
+            var roboticsContext = _context.SpecificRobotsTrans
+                .Include(s => s.LanguageNavigation)
+                .Include(s => s.SpecificrobotsNavigation);
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -35,7 +37,7 @@ namespace Robotics.Controllers
 
             var specificRobotsTrans = await _context.SpecificRobotsTrans
                 .Include(s => s.LanguageNavigation)
-                .Include(s => s.SpecificrobotsNavigation)
+                .Include(s => s.SpecificrobotsNavigation) //.ThenInclude(sr => sr.SpecificRobotsInRelation).ThenInclude(srr => srr.Industries)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (specificRobotsTrans == null)
             {

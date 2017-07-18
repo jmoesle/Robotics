@@ -21,7 +21,9 @@ namespace Robotics.Controllers
         // GET: SpecificRobotsInRelations
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.SpecificRobotsInRelation.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.IndustriesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation);
+            var roboticsContext = _context.SpecificRobotsInRelation
+                //.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.IndustriesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation)
+                ;
             return View(await roboticsContext.ToListAsync());
         }
         public async Task<IActionResult> IndexSpecificRobot(int specificrobot)
@@ -76,7 +78,7 @@ namespace Robotics.Controllers
             ViewData["Roboticsdevelopmentanddevelopmenttools"] = new SelectList(_context.RoboticsDevelopmentAndDevelopmentTools, "Id", "Id");
             ViewData["Roboticsorganizations"] = new SelectList(_context.RoboticsOrganizations, "Id", "Id");
             ViewData["Roboticsprinciples"] = new SelectList(_context.RoboticsPrinciples, "Id", "Id");
-            //ViewData["Specificrobots"] = new SelectList(_context.SpecificRobots, "Id", "Id");
+            ViewData["Specificrobots"] = new SelectList(_context.SpecificRobots, "Id", "Id");
             ViewData["Types"] = new SelectList(_context.Types, "Id", "Id");
 
 

@@ -35,7 +35,8 @@ namespace Robotics.Controllers
             }
 
             var specificRobots = await _context.SpecificRobots
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.Id == id)
+                ;
             if (specificRobots == null)
             {
                 return NotFound();
