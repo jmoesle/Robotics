@@ -9,22 +9,22 @@ using Robotics.Models;
 
 namespace Robotics.Controllers
 {
-    public class IndustriesController : Controller
+    public class BranchesController : Controller
     {
         private readonly RoboticsContext _context;
 
-        public IndustriesController(RoboticsContext context)
+        public BranchesController(RoboticsContext context)
         {
             _context = context;    
         }
 
-        // GET: Industries
+        // GET: Branches
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Industries.ToListAsync());
+            return View(await _context.Branches.ToListAsync());
         }
 
-        // GET: Industries/Details/5
+        // GET: Branches/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industries = await _context.Industries
+            var Branches = await _context.Branches
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (industries == null)
+            if (Branches == null)
             {
                 return NotFound();
             }
 
-            return View(industries);
+            return View(Branches);
         }
 
-        // GET: Industries/Create
+        // GET: Branches/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Industries/Create
+        // POST: Branches/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Industries industries)
+        public async Task<IActionResult> Create([Bind("Id")] Branches Branches)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(industries);
+                _context.Add(Branches);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(industries);
+            return View(Branches);
         }
 
-        // GET: Industries/Edit/5
+        // GET: Branches/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industries = await _context.Industries.SingleOrDefaultAsync(m => m.Id == id);
-            if (industries == null)
+            var Branches = await _context.Branches.SingleOrDefaultAsync(m => m.Id == id);
+            if (Branches == null)
             {
                 return NotFound();
             }
-            return View(industries);
+            return View(Branches);
         }
 
-        // POST: Industries/Edit/5
+        // POST: Branches/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Industries industries)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] Branches Branches)
         {
-            if (id != industries.Id)
+            if (id != Branches.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Robotics.Controllers
             {
                 try
                 {
-                    _context.Update(industries);
+                    _context.Update(Branches);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IndustriesExists(industries.Id))
+                    if (!BranchesExists(Branches.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Robotics.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(industries);
+            return View(Branches);
         }
 
-        // GET: Industries/Delete/5
+        // GET: Branches/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industries = await _context.Industries
+            var Branches = await _context.Branches
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (industries == null)
+            if (Branches == null)
             {
                 return NotFound();
             }
 
-            return View(industries);
+            return View(Branches);
         }
 
-        // POST: Industries/Delete/5
+        // POST: Branches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var industries = await _context.Industries.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Industries.Remove(industries);
+            var Branches = await _context.Branches.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Branches.Remove(Branches);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool IndustriesExists(int id)
+        private bool BranchesExists(int id)
         {
-            return _context.Industries.Any(e => e.Id == id);
+            return _context.Branches.Any(e => e.Id == id);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Robotics.Models
         public int Id { get; set; }
         //    public List<ModesOfLocomotion> Modesoflocomotion { get; set; }
         //   public List<RoboticsPrinciples> Roboticsprinciples { get; set; }
-        //public List<Industries> Industries { get; set; }
+        //public List<Branches> Branches { get; set; }
         //public List<ContributingFields> Contributingfields { get; set; }
         //public List<Types> Types { get; set; }
         //public List<RobotComponentsAndDesignFeatures> Robotcomponentsanddesignfeatures { get; set; }

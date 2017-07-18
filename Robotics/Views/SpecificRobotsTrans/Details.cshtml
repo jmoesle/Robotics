@@ -10,7 +10,7 @@
     var ContributingFieldsTrans = _context.ContributingFieldsTrans.ToList();
     var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.ToList();
     var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.ToList();
-    var IndustriesTrans = _context.SpecificRobotsInRelation.ToList();
+    var BranchesTrans = _context.SpecificRobotsInRelation.ToList();
     var TypesTrans = _context.TypesTrans.ToList();
     var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.ToList();
     var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
@@ -71,26 +71,31 @@
 
     <dl class="dl-horizontal">
         
-        @foreach (var item in listspecificrobotsinrelation)
-        {
-
-            @if (item.Specificrobots == Model.Specificrobots)
+        <dt>
+    Contributing Fields
+</dt>
+        <dd>
+            @foreach (var item in listspecificrobotsinrelation)
             {
-                <dt>
-                    Contributing Fields
-                </dt>
-                @foreach (var contfield in ContributingFieldsTrans)
+
+                @if (item.Specificrobots == Model.Specificrobots)
                 {
-                    @if (item.Contributingfields == contfield.Contributingfields)
+
+                    @foreach (var contfield in ContributingFieldsTrans)
                     {
-                        <dd>
+
+                        @if (item.Contributingfields == contfield.Contributingfields)
+                        {
+
                             <a asp-action="Details" asp-controller="ContributingFieldsTrans" asp-route-id="@item.Id">@contfield.Name</a><br />
-                        </dd>
+
+                        }
+
                     }
+
+
                 }
-
-
             }
-        }
+        </dd>
     </dl>
 </div>

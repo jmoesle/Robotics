@@ -1,4 +1,4 @@
-@model IEnumerable<Robotics.Models.IndustriesTrans>
+@model IEnumerable<Robotics.Models.BranchesTrans>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,7 +20,7 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.IndustriesNavigation)
+                @Html.DisplayNameFor(model => model.BranchesNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LanguageNavigation)
@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IndustriesNavigation.Id)
+                @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LanguageNavigation.Code)

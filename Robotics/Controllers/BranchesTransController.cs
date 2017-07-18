@@ -9,21 +9,21 @@ using Robotics.Models;
 
 namespace Robotics.Controllers
 {
-    public class IndustriesTransController : Controller
+    public class BranchesTransController : Controller
     {
         private readonly RoboticsContext _context;
 
-        public IndustriesTransController(RoboticsContext context)
+        public BranchesTransController(RoboticsContext context)
         {
             _context = context;    
         }
 
-        // GET: IndustriesTrans
+        // GET: BranchesTrans
         public async Task<IActionResult> Index()
         {
-           // var roboticsContext = _context.IndustriesTrans;
-            var roboticsContext = _context.IndustriesTrans
-               .Include(it => it.IndustriesNavigation) //IndustriesNavigation
+           // var roboticsContext = _context.BranchesTrans;
+            var roboticsContext = _context.BranchesTrans
+               .Include(it => it.BranchesNavigation) //BranchesNavigation
               //   .ThenInclude(ind => ind.SpecificRobotsInRelation)
                //       .ThenInclude(sr => sr.SpecificrobotsNavigation.Id)
                      // .ThenInclude(sr => sr.SpeId)
@@ -36,7 +36,7 @@ namespace Robotics.Controllers
             return View(await roboticsContext.ToListAsync());
         }
 
-        // GET: IndustriesTrans/Details/5
+        // GET: BranchesTrans/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,48 +44,48 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industriesTrans = await _context.IndustriesTrans
-                .Include(i => i.IndustriesNavigation)
+            var BranchesTrans = await _context.BranchesTrans
+                .Include(i => i.BranchesNavigation)
                      .ThenInclude(ind => ind.SpecificRobotsInRelation)
                       .ThenInclude(sr => sr.SpecificrobotsNavigation)
                    //  .ThenInclude(sn => sn.Id)
                 .Include(i => i.LanguageNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (industriesTrans == null)
+            if (BranchesTrans == null)
             {
                 return NotFound();
             }
 
-            return View(industriesTrans);
+            return View(BranchesTrans);
         }
 
-        // GET: IndustriesTrans/Create
+        // GET: BranchesTrans/Create
         public IActionResult Create()
         {
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id");
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
             ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code");
             return View();
         }
 
-        // POST: IndustriesTrans/Create
+        // POST: BranchesTrans/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Industries,Language")] IndustriesTrans industriesTrans)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Branches,Language")] BranchesTrans BranchesTrans)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(industriesTrans);
+                _context.Add(BranchesTrans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", industriesTrans.Industries);
-            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", industriesTrans.Language);
-            return View(industriesTrans);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", BranchesTrans.Branches);
+            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", BranchesTrans.Language);
+            return View(BranchesTrans);
         }
 
-        // GET: IndustriesTrans/Edit/5
+        // GET: BranchesTrans/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,24 +93,24 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industriesTrans = await _context.IndustriesTrans.SingleOrDefaultAsync(m => m.Id == id);
-            if (industriesTrans == null)
+            var BranchesTrans = await _context.BranchesTrans.SingleOrDefaultAsync(m => m.Id == id);
+            if (BranchesTrans == null)
             {
                 return NotFound();
             }
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", industriesTrans.Industries);
-            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", industriesTrans.Language);
-            return View(industriesTrans);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", BranchesTrans.Branches);
+            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", BranchesTrans.Language);
+            return View(BranchesTrans);
         }
 
-        // POST: IndustriesTrans/Edit/5
+        // POST: BranchesTrans/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Industries,Language")] IndustriesTrans industriesTrans)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Branches,Language")] BranchesTrans BranchesTrans)
         {
-            if (id != industriesTrans.Id)
+            if (id != BranchesTrans.Id)
             {
                 return NotFound();
             }
@@ -119,12 +119,12 @@ namespace Robotics.Controllers
             {
                 try
                 {
-                    _context.Update(industriesTrans);
+                    _context.Update(BranchesTrans);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IndustriesTransExists(industriesTrans.Id))
+                    if (!BranchesTransExists(BranchesTrans.Id))
                     {
                         return NotFound();
                     }
@@ -135,12 +135,12 @@ namespace Robotics.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", industriesTrans.Industries);
-            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", industriesTrans.Language);
-            return View(industriesTrans);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", BranchesTrans.Branches);
+            ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", BranchesTrans.Language);
+            return View(BranchesTrans);
         }
 
-        // GET: IndustriesTrans/Delete/5
+        // GET: BranchesTrans/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,32 +148,32 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var industriesTrans = await _context.IndustriesTrans
-                .Include(i => i.IndustriesNavigation) //Navigation
+            var BranchesTrans = await _context.BranchesTrans
+                .Include(i => i.BranchesNavigation) //Navigation
                 .Include(i => i.LanguageNavigation) //Navigation
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (industriesTrans == null)
+            if (BranchesTrans == null)
             {
                 return NotFound();
             }
 
-            return View(industriesTrans);
+            return View(BranchesTrans);
         }
 
-        // POST: IndustriesTrans/Delete/5
+        // POST: BranchesTrans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var industriesTrans = await _context.IndustriesTrans.SingleOrDefaultAsync(m => m.Id == id);
-            _context.IndustriesTrans.Remove(industriesTrans);
+            var BranchesTrans = await _context.BranchesTrans.SingleOrDefaultAsync(m => m.Id == id);
+            _context.BranchesTrans.Remove(BranchesTrans);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool IndustriesTransExists(int id)
+        private bool BranchesTransExists(int id)
         {
-            return _context.IndustriesTrans.Any(e => e.Id == id);
+            return _context.BranchesTrans.Any(e => e.Id == id);
         }
     }
 }

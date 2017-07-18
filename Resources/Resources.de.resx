@@ -129,6 +129,9 @@
   <data name="LabelForBooks" xml:space="preserve">
     <value>Bücher</value>
   </data>
+  <data name="LabelForBranches" xml:space="preserve">
+    <value>Gebiete</value>
+  </data>
   <data name="LabelForCollections" xml:space="preserve">
     <value>Sammlungen</value>
   </data>
@@ -140,9 +143,6 @@
   </data>
   <data name="LabelForData" xml:space="preserve">
     <value>Daten</value>
-  </data>
-  <data name="LabelForIndustries" xml:space="preserve">
-    <value>Branchen</value>
   </data>
   <data name="LabelForInfluantialPeople" xml:space="preserve">
     <value>Beeinflussende Personen</value>

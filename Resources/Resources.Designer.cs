@@ -80,7 +80,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Application uses ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Apllicaltion Uses ähnelt.
         /// </summary>
         public static string LabelForApplicationUses {
             get {
@@ -94,6 +94,15 @@ namespace Resources {
         public static string LabelForBooks {
             get {
                 return ResourceManager.GetString("LabelForBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Branches ähnelt.
+        /// </summary>
+        public static string LabelForBranches {
+            get {
+                return ResourceManager.GetString("LabelForBranches", resourceCulture);
             }
         }
         
@@ -134,15 +143,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Industries ähnelt.
-        /// </summary>
-        public static string LabelForIndustries {
-            get {
-                return ResourceManager.GetString("LabelForIndustries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Influantial People ähnelt.
         /// </summary>
         public static string LabelForInfluantialPeople {
@@ -152,7 +152,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Info Sources ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Soruces ähnelt.
         /// </summary>
         public static string LabelForInfoSources {
             get {
@@ -170,7 +170,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Learn more ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Learn More ähnelt.
         /// </summary>
         public static string LabelForLearnMore {
             get {
@@ -224,7 +224,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Competition ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Competitions ähnelt.
         /// </summary>
         public static string LabelForRoboticsCompetition {
             get {
@@ -242,7 +242,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Development And Development Tools ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Development and Development Tools ähnelt.
         /// </summary>
         public static string LabelForRoboticsDevelopmentAndDevelopmentTools {
             get {
@@ -251,7 +251,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Organization ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Organization ähnelt.
         /// </summary>
         public static string LabelForRoboticsOrganization {
             get {
@@ -260,7 +260,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Principles ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Robotic Principles ähnelt.
         /// </summary>
         public static string LabelForRoboticsPrinciples {
             get {

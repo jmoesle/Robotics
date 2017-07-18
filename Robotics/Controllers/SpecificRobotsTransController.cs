@@ -37,7 +37,7 @@ namespace Robotics.Controllers
 
             var specificRobotsTrans = await _context.SpecificRobotsTrans
                 .Include(s => s.LanguageNavigation)
-                .Include(s => s.SpecificrobotsNavigation) //.ThenInclude(sr => sr.SpecificRobotsInRelation).ThenInclude(srr => srr.Industries)
+                .Include(s => s.SpecificrobotsNavigation) //.ThenInclude(sr => sr.SpecificRobotsInRelation).ThenInclude(srr => srr.Branches)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (specificRobotsTrans == null)
             {

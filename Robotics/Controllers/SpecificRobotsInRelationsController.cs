@@ -22,13 +22,13 @@ namespace Robotics.Controllers
         public async Task<IActionResult> Index()
         {
             var roboticsContext = _context.SpecificRobotsInRelation
-                //.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.IndustriesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation)
+                //.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.BranchesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation)
                 ;
             return View(await roboticsContext.ToListAsync());
         }
         public async Task<IActionResult> IndexSpecificRobot(int specificrobot)
         {
-            var roboticsContext = _context.SpecificRobotsInRelation.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.IndustriesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation);
+            var roboticsContext = _context.SpecificRobotsInRelation.Include(s => s.ContributingfieldsNavigation).Include(s => s.DegreeofmaturityNavigation).Include(s => s.BranchesNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation);
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -44,7 +44,7 @@ namespace Robotics.Controllers
             var specificRobotsInRelation = await _context.SpecificRobotsInRelation
                 .Include(s => s.ContributingfieldsNavigation)
                 .Include(s => s.DegreeofmaturityNavigation)
-                .Include(s => s.IndustriesNavigation)
+                .Include(s => s.BranchesNavigation)
                 .Include(s => s.InfluentialpeopleNavigation)
                 .Include(s => s.ModesoflocomotionNavigation)
                 .Include(s => s.RobotcomponentsanddesignfeaturesNavigation)
@@ -69,7 +69,7 @@ namespace Robotics.Controllers
         {
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id");
             ViewData["Degreeofmaturity"] = new SelectList(_context.DegreeOfMaturity, "Id", "Id");
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id");
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
             ViewData["Influentialpeople"] = new SelectList(_context.InfluentialPeople, "Id", "Id");
             ViewData["Modesoflocomotion"] = new SelectList(_context.ModesOfLocomotion, "Id", "Id");
             ViewData["Robotcomponentsanddesignfeatures"] = new SelectList(_context.RobotComponentsAndDesignFeatures, "Id", "Id");
@@ -93,7 +93,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Specificrobots,Modesoflocomotion,Roboticsprinciples,Industries,Contributingfields,Types,Robotcomponentsanddesignfeatures,Roboticsdevelopmentanddevelopmenttools,Roboticscompanies,Roboticsorganizations,Roboticscompetitions,Influentialpeople,Degreeofmaturity")] SpecificRobotsInRelation specificRobotsInRelation)
+        public async Task<IActionResult> Create([Bind("Id,Specificrobots,Modesoflocomotion,Roboticsprinciples,Branches,Contributingfields,Types,Robotcomponentsanddesignfeatures,Roboticsdevelopmentanddevelopmenttools,Roboticscompanies,Roboticsorganizations,Roboticscompetitions,Influentialpeople,Degreeofmaturity")] SpecificRobotsInRelation specificRobotsInRelation)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace Robotics.Controllers
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", specificRobotsInRelation.Contributingfields);
             ViewData["Degreeofmaturity"] = new SelectList(_context.DegreeOfMaturity, "Id", "Id", specificRobotsInRelation.Degreeofmaturity);
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", specificRobotsInRelation.Industries);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", specificRobotsInRelation.Branches);
             ViewData["Influentialpeople"] = new SelectList(_context.InfluentialPeople, "Id", "Id", specificRobotsInRelation.Influentialpeople);
             ViewData["Modesoflocomotion"] = new SelectList(_context.ModesOfLocomotion, "Id", "Id", specificRobotsInRelation.Modesoflocomotion);
             ViewData["Robotcomponentsanddesignfeatures"] = new SelectList(_context.RobotComponentsAndDesignFeatures, "Id", "Id", specificRobotsInRelation.Robotcomponentsanddesignfeatures);
@@ -132,7 +132,7 @@ namespace Robotics.Controllers
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", specificRobotsInRelation.Contributingfields);
             ViewData["Degreeofmaturity"] = new SelectList(_context.DegreeOfMaturity, "Id", "Id", specificRobotsInRelation.Degreeofmaturity);
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", specificRobotsInRelation.Industries);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", specificRobotsInRelation.Branches);
             ViewData["Influentialpeople"] = new SelectList(_context.InfluentialPeople, "Id", "Id", specificRobotsInRelation.Influentialpeople);
             ViewData["Modesoflocomotion"] = new SelectList(_context.ModesOfLocomotion, "Id", "Id", specificRobotsInRelation.Modesoflocomotion);
             ViewData["Robotcomponentsanddesignfeatures"] = new SelectList(_context.RobotComponentsAndDesignFeatures, "Id", "Id", specificRobotsInRelation.Robotcomponentsanddesignfeatures);
@@ -151,7 +151,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Specificrobots,Modesoflocomotion,Roboticsprinciples,Industries,Contributingfields,Types,Robotcomponentsanddesignfeatures,Roboticsdevelopmentanddevelopmenttools,Roboticscompanies,Roboticsorganizations,Roboticscompetitions,Influentialpeople,Degreeofmaturity")] SpecificRobotsInRelation specificRobotsInRelation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Specificrobots,Modesoflocomotion,Roboticsprinciples,Branches,Contributingfields,Types,Robotcomponentsanddesignfeatures,Roboticsdevelopmentanddevelopmenttools,Roboticscompanies,Roboticsorganizations,Roboticscompetitions,Influentialpeople,Degreeofmaturity")] SpecificRobotsInRelation specificRobotsInRelation)
         {
             if (id != specificRobotsInRelation.Id)
             {
@@ -180,7 +180,7 @@ namespace Robotics.Controllers
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", specificRobotsInRelation.Contributingfields);
             ViewData["Degreeofmaturity"] = new SelectList(_context.DegreeOfMaturity, "Id", "Id", specificRobotsInRelation.Degreeofmaturity);
-            ViewData["Industries"] = new SelectList(_context.Industries, "Id", "Id", specificRobotsInRelation.Industries);
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", specificRobotsInRelation.Branches);
             ViewData["Influentialpeople"] = new SelectList(_context.InfluentialPeople, "Id", "Id", specificRobotsInRelation.Influentialpeople);
             ViewData["Modesoflocomotion"] = new SelectList(_context.ModesOfLocomotion, "Id", "Id", specificRobotsInRelation.Modesoflocomotion);
             ViewData["Robotcomponentsanddesignfeatures"] = new SelectList(_context.RobotComponentsAndDesignFeatures, "Id", "Id", specificRobotsInRelation.Robotcomponentsanddesignfeatures);
@@ -205,7 +205,7 @@ namespace Robotics.Controllers
             var specificRobotsInRelation = await _context.SpecificRobotsInRelation
                 .Include(s => s.ContributingfieldsNavigation)
                 .Include(s => s.DegreeofmaturityNavigation)
-                .Include(s => s.IndustriesNavigation)
+                .Include(s => s.BranchesNavigation)
                 .Include(s => s.InfluentialpeopleNavigation)
                 .Include(s => s.ModesoflocomotionNavigation)
                 .Include(s => s.RobotcomponentsanddesignfeaturesNavigation)

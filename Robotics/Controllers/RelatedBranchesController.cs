@@ -9,23 +9,23 @@ using Robotics.Models;
 
 namespace Robotics.Controllers
 {
-    public class RelatedIndustriesController : Controller
+    public class RelatedBranchesController : Controller
     {
         private readonly RoboticsContext _context;
 
-        public RelatedIndustriesController(RoboticsContext context)
+        public RelatedBranchesController(RoboticsContext context)
         {
             _context = context;    
         }
 
-        // GET: RelatedIndustries
+        // GET: RelatedBranches
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.RelatedIndustries.Include(r => r.Industry1Navigation).Include(r => r.Industry2Navigation);
+            var roboticsContext = _context.RelatedBranches.Include(r => r.Industry1Navigation).Include(r => r.Industry2Navigation);
             return View(await roboticsContext.ToListAsync());
         }
 
-        // GET: RelatedIndustries/Details/5
+        // GET: RelatedBranches/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +33,45 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var relatedIndustries = await _context.RelatedIndustries
+            var relatedBranches = await _context.RelatedBranches
                 .Include(r => r.Industry1Navigation)
                 .Include(r => r.Industry2Navigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (relatedIndustries == null)
+            if (relatedBranches == null)
             {
                 return NotFound();
             }
 
-            return View(relatedIndustries);
+            return View(relatedBranches);
         }
 
-        // GET: RelatedIndustries/Create
+        // GET: RelatedBranches/Create
         public IActionResult Create()
         {
-            ViewData["Industry1"] = new SelectList(_context.Industries, "Id", "Id");
-            ViewData["Industry2"] = new SelectList(_context.Industries, "Id", "Id");
+            ViewData["Industry1"] = new SelectList(_context.Branches, "Id", "Id");
+            ViewData["Industry2"] = new SelectList(_context.Branches, "Id", "Id");
             return View();
         }
 
-        // POST: RelatedIndustries/Create
+        // POST: RelatedBranches/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Industry1,Industry2")] RelatedIndustries relatedIndustries)
+        public async Task<IActionResult> Create([Bind("Id,Industry1,Industry2")] RelatedBranches relatedBranches)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(relatedIndustries);
+                _context.Add(relatedBranches);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Industry1"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry1);
-            ViewData["Industry2"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry2);
-            return View(relatedIndustries);
+            ViewData["Industry1"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry1);
+            ViewData["Industry2"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry2);
+            return View(relatedBranches);
         }
 
-        // GET: RelatedIndustries/Edit/5
+        // GET: RelatedBranches/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +79,24 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var relatedIndustries = await _context.RelatedIndustries.SingleOrDefaultAsync(m => m.Id == id);
-            if (relatedIndustries == null)
+            var relatedBranches = await _context.RelatedBranches.SingleOrDefaultAsync(m => m.Id == id);
+            if (relatedBranches == null)
             {
                 return NotFound();
             }
-            ViewData["Industry1"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry1);
-            ViewData["Industry2"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry2);
-            return View(relatedIndustries);
+            ViewData["Industry1"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry1);
+            ViewData["Industry2"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry2);
+            return View(relatedBranches);
         }
 
-        // POST: RelatedIndustries/Edit/5
+        // POST: RelatedBranches/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Industry1,Industry2")] RelatedIndustries relatedIndustries)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Industry1,Industry2")] RelatedBranches relatedBranches)
         {
-            if (id != relatedIndustries.Id)
+            if (id != relatedBranches.Id)
             {
                 return NotFound();
             }
@@ -105,12 +105,12 @@ namespace Robotics.Controllers
             {
                 try
                 {
-                    _context.Update(relatedIndustries);
+                    _context.Update(relatedBranches);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RelatedIndustriesExists(relatedIndustries.Id))
+                    if (!RelatedBranchesExists(relatedBranches.Id))
                     {
                         return NotFound();
                     }
@@ -121,12 +121,12 @@ namespace Robotics.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Industry1"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry1);
-            ViewData["Industry2"] = new SelectList(_context.Industries, "Id", "Id", relatedIndustries.Industry2);
-            return View(relatedIndustries);
+            ViewData["Industry1"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry1);
+            ViewData["Industry2"] = new SelectList(_context.Branches, "Id", "Id", relatedBranches.Industry2);
+            return View(relatedBranches);
         }
 
-        // GET: RelatedIndustries/Delete/5
+        // GET: RelatedBranches/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +134,32 @@ namespace Robotics.Controllers
                 return NotFound();
             }
 
-            var relatedIndustries = await _context.RelatedIndustries
+            var relatedBranches = await _context.RelatedBranches
                 .Include(r => r.Industry1Navigation)
                 .Include(r => r.Industry2Navigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (relatedIndustries == null)
+            if (relatedBranches == null)
             {
                 return NotFound();
             }
 
-            return View(relatedIndustries);
+            return View(relatedBranches);
         }
 
-        // POST: RelatedIndustries/Delete/5
+        // POST: RelatedBranches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var relatedIndustries = await _context.RelatedIndustries.SingleOrDefaultAsync(m => m.Id == id);
-            _context.RelatedIndustries.Remove(relatedIndustries);
+            var relatedBranches = await _context.RelatedBranches.SingleOrDefaultAsync(m => m.Id == id);
+            _context.RelatedBranches.Remove(relatedBranches);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool RelatedIndustriesExists(int id)
+        private bool RelatedBranchesExists(int id)
         {
-            return _context.RelatedIndustries.Any(e => e.Id == id);
+            return _context.RelatedBranches.Any(e => e.Id == id);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Robotics.Models
             ContributingFieldsTrans = new HashSet<ContributingFieldsTrans>();
             CountriesTrans = new HashSet<CountriesTrans>();
             DegreeOfMaturityTrans = new HashSet<DegreeOfMaturityTrans>();
-            IndustriesTrans = new HashSet<IndustriesTrans>();
+            BranchesTrans = new HashSet<BranchesTrans>();
             InfluentialPeopleTrans = new HashSet<InfluentialPeopleTrans>();
             ModesOfLocomotionTrans = new HashSet<ModesOfLocomotionTrans>();
             RobotComponentsAndDesignFeaturesTrans = new HashSet<RobotComponentsAndDesignFeaturesTrans>();
@@ -29,7 +29,7 @@ namespace Robotics.Models
         public virtual ICollection<ContributingFieldsTrans> ContributingFieldsTrans { get; set; }
         public virtual ICollection<CountriesTrans> CountriesTrans { get; set; }
         public virtual ICollection<DegreeOfMaturityTrans> DegreeOfMaturityTrans { get; set; }
-        public virtual ICollection<IndustriesTrans> IndustriesTrans { get; set; }
+        public virtual ICollection<BranchesTrans> BranchesTrans { get; set; }
         public virtual ICollection<InfluentialPeopleTrans> InfluentialPeopleTrans { get; set; }
         public virtual ICollection<ModesOfLocomotionTrans> ModesOfLocomotionTrans { get; set; }
         public virtual ICollection<RobotComponentsAndDesignFeaturesTrans> RobotComponentsAndDesignFeaturesTrans { get; set; }
