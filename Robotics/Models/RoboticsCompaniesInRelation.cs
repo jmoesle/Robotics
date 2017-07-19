@@ -8,10 +8,15 @@ namespace Robotics.Models
         public int Id { get; set; }
         public int Roboticscompanies { get; set; }
         public int? Branches { get; set; }
+        public int? Business { get; set; }
+
         public int? Contributingfields { get; set; }
 
         public virtual ContributingFields ContributingfieldsNavigation { get; set; }
         public virtual Branches BranchesNavigation { get; set; }
+        public virtual Business BusinessNavigation { get; set; }
+
+
         public virtual RoboticsCompanies RoboticscompaniesNavigation { get; set; }
     }
 }

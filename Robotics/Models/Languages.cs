@@ -11,6 +11,7 @@ namespace Robotics.Models
             CountriesTrans = new HashSet<CountriesTrans>();
             DegreeOfMaturityTrans = new HashSet<DegreeOfMaturityTrans>();
             BranchesTrans = new HashSet<BranchesTrans>();
+            BusinessTrans = new HashSet<BusinessTrans>();
             InfluentialPeopleTrans = new HashSet<InfluentialPeopleTrans>();
             ModesOfLocomotionTrans = new HashSet<ModesOfLocomotionTrans>();
             RobotComponentsAndDesignFeaturesTrans = new HashSet<RobotComponentsAndDesignFeaturesTrans>();
@@ -30,6 +31,7 @@ namespace Robotics.Models
         public virtual ICollection<CountriesTrans> CountriesTrans { get; set; }
         public virtual ICollection<DegreeOfMaturityTrans> DegreeOfMaturityTrans { get; set; }
         public virtual ICollection<BranchesTrans> BranchesTrans { get; set; }
+        public virtual ICollection<BusinessTrans> BusinessTrans { get; set; }
         public virtual ICollection<InfluentialPeopleTrans> InfluentialPeopleTrans { get; set; }
         public virtual ICollection<ModesOfLocomotionTrans> ModesOfLocomotionTrans { get; set; }
         public virtual ICollection<RobotComponentsAndDesignFeaturesTrans> RobotComponentsAndDesignFeaturesTrans { get; set; }

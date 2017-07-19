@@ -8,6 +8,10 @@ namespace Robotics.Models
     {
         public virtual DbSet<Addresses> Addresses { get; set; }
         public virtual DbSet<AddressesInRelation> AddressesInRelation { get; set; }
+        public virtual DbSet<Branches> Branches { get; set; }
+        public virtual DbSet<BranchesTrans> BranchesTrans { get; set; }
+        public virtual DbSet<Business> Business { get; set; }
+        public virtual DbSet<BusinessTrans> BusinessTrans { get; set; }
         public virtual DbSet<Books> Books { get; set; }
       
         public virtual DbSet<Collections> Collections { get; set; }
@@ -17,8 +21,7 @@ namespace Robotics.Models
         public virtual DbSet<CountriesTrans> CountriesTrans { get; set; }
         public virtual DbSet<DegreeOfMaturity> DegreeOfMaturity { get; set; }
         public virtual DbSet<DegreeOfMaturityTrans> DegreeOfMaturityTrans { get; set; }
-        public virtual DbSet<Branches> Branches { get; set; }
-        public virtual DbSet<BranchesTrans> BranchesTrans { get; set; }
+        
         public virtual DbSet<InfluentialPeople> InfluentialPeople { get; set; }
         public virtual DbSet<InfluentialPeopleTrans> InfluentialPeopleTrans { get; set; }
         public virtual DbSet<InfoSources> InfoSources { get; set; }
@@ -31,6 +34,7 @@ namespace Robotics.Models
         public virtual DbSet<Newspapers> Newspapers { get; set; }
         public virtual DbSet<OfficialStatements> OfficialStatements { get; set; }
         public virtual DbSet<RelatedContributingFields> RelatedContributingFields { get; set; }
+        public virtual DbSet<RelatedBusiness> RelatedBusiness { get; set; }
         public virtual DbSet<RelatedBranches> RelatedBranches { get; set; }
         public virtual DbSet<RobotComponentsAndDesignFeatures> RobotComponentsAndDesignFeatures { get; set; }
         public virtual DbSet<RobotComponentsAndDesignFeaturesTrans> RobotComponentsAndDesignFeaturesTrans { get; set; }
@@ -256,6 +260,10 @@ namespace Robotics.Models
             {
                 entity.ToTable("branches");
             });
+ modelBuilder.Entity<Business>(entity =>
+           {
+               entity.ToTable("business");
+           });
 
             modelBuilder.Entity<BranchesTrans>(entity =>
             {
@@ -274,6 +282,24 @@ namespace Robotics.Models
                     .HasForeignKey(d => d.Language)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK__industrie__Langu__01D345B0");
+            });
+            modelBuilder.Entity<BusinessTrans>(entity =>
+            {
+                entity.ToTable("business_trans");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.HasOne(d => d.BusinessNavigation) // BranchesNavigation
+                    .WithMany(p => p.BusinessTrans)
+                    .HasForeignKey(d => d.Business)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK__business___Busin__50C5FA01");
+
+                entity.HasOne(d => d.LanguageNavigation) // LanguageNavigation
+                    .WithMany(p => p.BusinessTrans)
+                    .HasForeignKey(d => d.Language)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK__business___Langu__4FD1D5C8");
             });
 
             modelBuilder.Entity<InfluentialPeople>(entity =>
@@ -528,6 +554,22 @@ namespace Robotics.Models
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK__related_i__Indus__1DB06A4F");
             });
+            modelBuilder.Entity<RelatedBusiness>(entity =>
+            {
+                entity.ToTable("related_business");
+
+                entity.HasOne(d => d.Business1Navigation)
+                    .WithMany(p => p.RelatedBusinessBusiness1Navigation)
+                    .HasForeignKey(d => d.Business1)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK__related_b__Busin__5772F790");
+
+                entity.HasOne(d => d.Business2Navigation)
+                    .WithMany(p => p.RelatedBusinessBusiness2Navigation)
+                    .HasForeignKey(d => d.Business2)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK__related_b__Busin__58671BC9");
+            });
 
             modelBuilder.Entity<RobotComponentsAndDesignFeatures>(entity =>
             {
@@ -571,6 +613,11 @@ namespace Robotics.Models
                     .WithMany(p => p.RoboticsCompaniesInRelation)
                     .HasForeignKey(d => d.Branches)
                     .HasConstraintName("FK__robotics___Indus__762C88DA");
+
+                entity.HasOne(d => d.BusinessNavigation)//Navigation
+                                   .WithMany(p => p.RoboticsCompaniesInRelation)
+                                   .HasForeignKey(d => d.Business)
+                                   .HasConstraintName("FK__robotics___Busin__51BA1E3A");
 
                 entity.HasOne(d => d.RoboticscompaniesNavigation)
                     .WithMany(p => p.RoboticsCompaniesInRelation)
@@ -618,6 +665,10 @@ namespace Robotics.Models
                     .WithMany(p => p.RoboticsCompetitionsInRelation)
                     .HasForeignKey(d => d.Branches)
                     .HasConstraintName("FK__robotics___Indus__7FB5F314");
+                entity.HasOne(d => d.BusinessNavigation)
+                    .WithMany(p => p.RoboticsCompetitionsInRelation)
+                    .HasForeignKey(d => d.Business)
+                    .HasConstraintName("FK__robotics___Busin__54968AE5");
 
                 entity.HasOne(d => d.RoboticscompetitionsNavigation)
                     .WithMany(p => p.RoboticsCompetitionsInRelation)
@@ -687,6 +738,10 @@ namespace Robotics.Models
                     .WithMany(p => p.RoboticsOrganizationsInRelation)
                     .HasForeignKey(d => d.Branches)
                     .HasConstraintName("FK__robotics___Indus__7AF13DF7");
+                entity.HasOne(d => d.BusinessNavigation)
+                    .WithMany(p => p.RoboticsOrganizationsInRelation)
+                    .HasForeignKey(d => d.Business)
+                    .HasConstraintName("FK__robotics___Busin__53A266AC");
 
                 entity.HasOne(d => d.RoboticsorganizationsNavigation)
                     .WithMany(p => p.RoboticsOrganizationsInRelation)
@@ -800,6 +855,10 @@ namespace Robotics.Models
                     .WithMany(p => p.SpecificRobotsInRelation)
                     .HasForeignKey(d => d.Branches)
                     .HasConstraintName("FK__specific___Indus__44CA3770");
+                entity.HasOne(d => d.BusinessNavigation)
+                   .WithMany(p => p.SpecificRobotsInRelation)
+                   .HasForeignKey(d => d.Business)
+                   .HasConstraintName("FK__specific___Busin__52AE4273");
 
                 entity.HasOne(d => d.InfluentialpeopleNavigation)
                     .WithMany(p => p.SpecificRobotsInRelation)

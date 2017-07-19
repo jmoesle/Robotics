@@ -10,6 +10,7 @@ namespace Robotics.Models
         public int? Modesoflocomotion { get; set; }
         public int? Roboticsprinciples { get; set; }
         public int? Branches { get; set; }
+        public int? Business { get; set; }
         public int? Contributingfields { get; set; }
         public int? Types { get; set; }
         public int? Robotcomponentsanddesignfeatures { get; set; }
@@ -23,6 +24,8 @@ namespace Robotics.Models
         public virtual ContributingFields ContributingfieldsNavigation { get; set; }
         public virtual DegreeOfMaturity DegreeofmaturityNavigation { get; set; }
         public virtual Branches BranchesNavigation { get; set; }
+        public virtual Business BusinessNavigation { get; set; }
+
         public virtual InfluentialPeople InfluentialpeopleNavigation { get; set; }
         public virtual ModesOfLocomotion ModesoflocomotionNavigation { get; set; }
         public virtual RobotComponentsAndDesignFeatures RobotcomponentsanddesignfeaturesNavigation { get; set; }
