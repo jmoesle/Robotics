@@ -75,7 +75,9 @@
                             if (item.LanguageNavigation.Code.ToLower() == cultureselectedshort)
 
                             {
-                                @Html.DisplayFor(modelItem => item.Description)
+                                @Html.Raw(item.Description)
+                                <!-- Html.DisplayFor(modelItem => item.Description) -->
+                                 
                             }
                         }
                     }

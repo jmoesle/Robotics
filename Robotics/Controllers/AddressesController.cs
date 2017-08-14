@@ -25,6 +25,12 @@ namespace Robotics.Controllers
             return View(await roboticsContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Overview()
+        {
+            var roboticsContext = _context.Addresses.Include(a => a.CountryNavigation);
+            return View(await roboticsContext.ToListAsync());
+        }
+
         // GET: Addresses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -56,7 +62,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Firstname,Lastname,Company,Street,Streetnumber,Zip,State,Country")] Addresses addresses)
+        public async Task<IActionResult> Create([Bind("Id,Firstname,Lastname,Company,Street,Streetnumber,Zip,State,Country,Latitude,Longitude,Label")] Addresses addresses)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +96,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Firstname,Lastname,Company,Street,Streetnumber,Zip,State,Country")] Addresses addresses)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Firstname,Lastname,Company,Street,Streetnumber,Zip,State,Country,Latitude,Longitude,Label")] Addresses addresses)
         {
             if (id != addresses.Id)
             {

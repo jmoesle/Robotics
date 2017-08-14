@@ -1,0 +1,93 @@
+@model IEnumerable<Robotics.Models.Addresses>
+using System.Web;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         #map {
+             height: 80vh;
+         }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+
+<h2>Overview</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+    
+
+    <div id="map"></div>
+    <script>
+
+
+        var AddressesList = [
+       @foreach (var address in Model) {
+
+           var title = Html.Raw(HttpUtility.JavaScriptStringEncode(address.Firstname));
+
+           Write(
+
+"[" +
+address.Latitude.ToString().Replace(",", ".") + ", " +
+address.Longitude.ToString().Replace(",", ".") + ", ");
+
+           Write(
+"\"" + address.Firstname + " " + address.Lastname + "\""
+);
+                   Write("],");
+       }
+           [0.000000, 0.000000, "Center"]
+        ]
+        
+                function initMap() {
+
+               var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 1,
+                center: { lat: -0.0, lng: 0.0 }
+           });
+
+
+                for (var i = 0; i < AddressesList.length; i++) {
+                    
+                    var marker = new google.maps.Marker({
+
+                    position: { lat: AddressesList[i][0], lng: AddressesList[i][1] } ,
+                    map: map,
+                    title: AddressesList[i][2]
+                    
+                    });
+
+
+
+                             };
+
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers,
+                { imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m" });
+        }
+
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-PajEphgimKHUxIS3otGcXcAlJrE8Nd4&callback=initMap">
+</script>
+  
