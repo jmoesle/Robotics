@@ -42,7 +42,7 @@ namespace Robotics.Controllers
             }
 
             var specificRobotsInRelation = await _context.SpecificRobotsInRelation
-                .Include(s => s.ContributingfieldsNavigation)
+                .Include(s => s.ContributingfieldsNavigation) 
                 .Include(s => s.DegreeofmaturityNavigation)
                 .Include(s => s.BranchesNavigation)
                 .Include(s => s.BusinessNavigation)
@@ -65,6 +65,36 @@ namespace Robotics.Controllers
             return View(specificRobotsInRelation);
         }
 
+
+
+        // GET: SpecificRobotsInRelations/Manage
+        public IActionResult Manage(int specificrobots)
+        {
+            ViewData["Contributingfields"] = new SelectList(_context.ContributingFieldsTrans.Where(cf => cf.Language.Equals(1)), "Contributingfields", "Name");
+
+           // ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id");
+            ViewData["Degreeofmaturity"] = new SelectList(_context.DegreeOfMaturity, "Id", "Id");
+            ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id");
+            ViewData["Influentialpeople"] = new SelectList(_context.InfluentialPeople, "Id", "Id");
+            ViewData["Modesoflocomotion"] = new SelectList(_context.ModesOfLocomotion, "Id", "Id");
+            ViewData["Robotcomponentsanddesignfeatures"] = new SelectList(_context.RobotComponentsAndDesignFeatures, "Id", "Id");
+            ViewData["Roboticscompanies"] = new SelectList(_context.RoboticsCompanies, "Id", "Id");
+            ViewData["Roboticscompetitions"] = new SelectList(_context.RoboticsCompetitions, "Id", "Id");
+            ViewData["Roboticsdevelopmentanddevelopmenttools"] = new SelectList(_context.RoboticsDevelopmentAndDevelopmentTools, "Id", "Id");
+            ViewData["Roboticsorganizations"] = new SelectList(_context.RoboticsOrganizations, "Id", "Id");
+            ViewData["Roboticsprinciples"] = new SelectList(_context.RoboticsPrinciples, "Id", "Id");
+            ViewData["Specificrobots"] = new SelectList(_context.SpecificRobots, "Id", "Id");
+            ViewData["Types"] = new SelectList(_context.Types, "Id", "Id");
+            ViewData["Specificrobot"] = specificrobots;
+            ViewData["Specificrobotsinrelation"] = _context.SpecificRobotsInRelation.Where(SR => SR.Specificrobots.Equals(specificrobots)).Include(s => s.ContributingfieldsNavigation).ThenInclude(cf => cf.ContributingFieldsTrans).Include(s => s.DegreeofmaturityNavigation).Include(s => s.BranchesNavigation).Include(s => s.BusinessNavigation).Include(s => s.InfluentialpeopleNavigation).Include(s => s.ModesoflocomotionNavigation).Include(s => s.RobotcomponentsanddesignfeaturesNavigation).Include(s => s.RoboticscompaniesNavigation).Include(s => s.RoboticscompetitionsNavigation).Include(s => s.RoboticsdevelopmentanddevelopmenttoolsNavigation).Include(s => s.RoboticsorganizationsNavigation).Include(s => s.RoboticsprinciplesNavigation).Include(s => s.SpecificrobotsNavigation).Include(s => s.TypesNavigation).ToList();
+
+
+            SpecificRobotsInRelation specificrobotsinrelation = new SpecificRobotsInRelation();
+            specificrobotsinrelation.Specificrobots = specificrobots;
+            return View(specificrobotsinrelation);
+            
+        }
         // GET: SpecificRobotsInRelations/Create
         public IActionResult Create(int specificrobots)
         {

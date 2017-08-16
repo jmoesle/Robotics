@@ -1,0 +1,222 @@
+@model Robotics.Models.SpecificRobotsInRelation
+@using Robotics.Models
+@inject RoboticsContext _context
+
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ICollection<SpecificRobotsInRelation> list = ViewBag.Specificrobotsinrelation;
+}
+
+<h2>Manage</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContributingfieldsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DegreeofmaturityNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BusinessNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InfluentialpeopleNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModesoflocomotionNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobotcomponentsanddesignfeaturesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticscompaniesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticscompetitionsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsdevelopmentanddevelopmenttoolsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsorganizationsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoboticsprinciplesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecificrobotsNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypesNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in list.Where(lsr => lsr.Specificrobots.Equals(ViewBag.Specificrobot)))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContributingfieldsNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreeofmaturityNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusinessNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InfluentialpeopleNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModesoflocomotionNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobotcomponentsanddesignfeaturesNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoboticscompaniesNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoboticscompetitionsNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoboticsdevelopmentanddevelopmenttoolsNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoboticsorganizationsNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoboticsprinciplesNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecificrobotsNavigation.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypesNavigation.Id)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>SpecificRobotsInRelation</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Specificrobots" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Specificrobots" class="form-control" asp-items="ViewBag.Specificrobots"></select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Modesoflocomotion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Modesoflocomotion" class="form-control" asp-items="ViewBag.Modesoflocomotion">
+                    <option selected="selected" value="">None</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsprinciples" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsprinciples" class="form-control" asp-items="ViewBag.Roboticsprinciples"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Branches" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Branches" class="form-control" asp-items="ViewBag.Branches"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Business" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Business" class="form-control" asp-items="ViewBag.Business"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contributingfields" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Contributingfields" class="form-control" asp-items="ViewBag.Contributingfields"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Types" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Robotcomponentsanddesignfeatures" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Robotcomponentsanddesignfeatures" class="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsdevelopmentanddevelopmenttools" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompanies" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompanies" class="form-control" asp-items="ViewBag.Roboticscompanies"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticsorganizations" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticsorganizations" class="form-control" asp-items="ViewBag.Roboticsorganizations"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Roboticscompetitions" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Roboticscompetitions" class="form-control" asp-items="ViewBag.Roboticscompetitions"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Influentialpeople" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Influentialpeople" class="form-control" asp-items="ViewBag.Influentialpeople"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Degreeofmaturity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Degreeofmaturity" class="form-control" asp-items="ViewBag.Degreeofmaturity"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
