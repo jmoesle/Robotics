@@ -3,10 +3,35 @@
 @inject RoboticsContext _context
 
 
-    @{
-        ViewData["Title"] = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-        ICollection<SpecificRobotsInRelation> list = ViewBag.Specificrobotsinrelation;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ICollection<SpecificRobotsInRelation> list = ViewBag.Specificrobotsinrelation;
+    var listspecificrobotsinrelation = _context.SpecificRobotsInRelation.ToList();
+    var ContributingFieldsTrans = _context.ContributingFieldsTrans.ToList();
+    var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.ToList();
+    var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.ToList();
+    var BranchesTrans = _context.SpecificRobotsInRelation.ToList();
+    var TypesTrans = _context.TypesTrans.ToList();
+    var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.ToList();
+    var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
+    var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.ToList();
+    var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.ToList();
+    var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.ToList();
+    var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.ToList();
+    var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.ToList();
+
+
+    string language = @Context.Request.Path;
+    int languageInt = 1;
+    if (language.Length > 5)
+    {
+        language = language.Substring(1, 2);
+        if ( language == "en") { language = "1"; };
+        if (language == "de") { language = "2";};
+        languageInt = int.Parse(language);
+    };
+
 }
 
 <h2>Manage</h2>
@@ -63,14 +88,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in list.Where(lsr => lsr.Specificrobots.Equals(ViewBag.Specificrobot)))
+        @foreach (var item in list.Where(L => L.Specificrobots.Equals(ViewBag.Specificrobot)))
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ContributingfieldsNavigation.Id)
+                    @foreach (var CFT in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(item.ContributingfieldsNavigation.Id)))
+                    {   @if (CFT.Language == languageInt){ @CFT.Name}
+                        @if (CFT.Name == "")
+                        { @if (CFT.Language == 1) {   @CFT.Name} }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DegreeofmaturityNavigation.Id)
+                    @if (item.DegreeofmaturityNavigation.Id != null) { 
+                    @foreach (var CFT in DegreeOfMaturityTrans.Where(lm => lm.Degreeofmaturity.Equals(item.DegreeofmaturityNavigation.Id)))
+                    {   @if (CFT.Language == languageInt)
+                    { @CFT.Name}
+                        @if (CFT.Name == "")
+                    { @if (CFT.Language == 1)
+                    {   @CFT.Name} }
+                    }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
@@ -123,14 +160,16 @@
         <h4>SpecificRobotsInRelation</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="form-group">
             <label asp-for="Specificrobots" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Specificrobots" class="form-control" asp-items="ViewBag.Specificrobots"></select>
-
+                <select asp-for="Specificrobots" class="form-control" asp-items="ViewBag.Specificrobots">
+                    <option selected="selected" value="@ViewBag.specificrobot"></option>
+                </select>
             </div>
         </div>
-
+    
         <div class="form-group">
             <label asp-for="Modesoflocomotion" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -143,73 +182,97 @@
         <div class="form-group">
             <label asp-for="Roboticsprinciples" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticsprinciples" class="form-control" asp-items="ViewBag.Roboticsprinciples"></select>
+                <select asp-for="Roboticsprinciples" class="form-control" asp-items="ViewBag.Roboticsprinciples">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Branches" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Branches" class="form-control" asp-items="ViewBag.Branches"></select>
+                <select asp-for="Branches" class="form-control" asp-items="ViewBag.Branches">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Business" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Business" class="form-control" asp-items="ViewBag.Business"></select>
+                <select asp-for="Business" class="form-control" asp-items="ViewBag.Business">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Contributingfields" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Contributingfields" class="form-control" asp-items="ViewBag.Contributingfields"></select>
+                <select asp-for="Contributingfields" class="form-control" asp-items="ViewBag.Contributingfields">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Types" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types"></select>
+                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Robotcomponentsanddesignfeatures" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Robotcomponentsanddesignfeatures" class="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures"></select>
+                <select asp-for="Robotcomponentsanddesignfeatures" class="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Roboticsdevelopmentanddevelopmenttools" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools"></select>
+                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Roboticscompanies" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticscompanies" class="form-control" asp-items="ViewBag.Roboticscompanies"></select>
+                <select asp-for="Roboticscompanies" class="form-control" asp-items="ViewBag.Roboticscompanies">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Roboticsorganizations" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticsorganizations" class="form-control" asp-items="ViewBag.Roboticsorganizations"></select>
+                <select asp-for="Roboticsorganizations" class="form-control" asp-items="ViewBag.Roboticsorganizations">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Roboticscompetitions" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticscompetitions" class="form-control" asp-items="ViewBag.Roboticscompetitions"></select>
+                <select asp-for="Roboticscompetitions" class="form-control" asp-items="ViewBag.Roboticscompetitions">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Influentialpeople" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Influentialpeople" class="form-control" asp-items="ViewBag.Influentialpeople"></select>
+                <select asp-for="Influentialpeople" class="form-control" asp-items="ViewBag.Influentialpeople">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Degreeofmaturity" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Degreeofmaturity" class="form-control" asp-items="ViewBag.Degreeofmaturity"></select>
+                <select asp-for="Degreeofmaturity" class="form-control" asp-items="ViewBag.Degreeofmaturity">
+                    <option selected="selected" value="">None</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

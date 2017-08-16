@@ -3,18 +3,19 @@
     <TargetFramework>netcoreapp1.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
+    <Compile Remove="Resources - Kopieren %282%29.Designer.cs" />
+    <Compile Remove="Resources - Kopieren - Kopieren.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources - Kopieren %282%29.resx" />
+    <EmbeddedResource Remove="Resources - Kopieren.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources.resx">
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources - Kopieren %282%29.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="SharedResource.de-CH.resx">
