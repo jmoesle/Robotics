@@ -20,7 +20,10 @@
                     @Html.DisplayNameFor(model => model.Tableid)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.InfosourcesNavigation)
+                @Html.DisplayNameFor(model => model.InfotypesNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Infosourceid)
             </th>
             <th></th>
         </tr>
@@ -35,7 +38,10 @@
                 @Html.DisplayFor(modelItem => item.Tableid)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InfosourcesNavigation.Id)
+                @Html.DisplayFor(modelItem => item.InfotypesNavigation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Infosourceid)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

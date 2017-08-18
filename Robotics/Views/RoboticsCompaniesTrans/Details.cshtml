@@ -1,8 +1,23 @@
 @model Robotics.Models.RoboticsCompaniesTrans
+@using Robotics.Models
+@inject RoboticsContext _context
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var AddressesInRelation = _context.AddressesInRelation.ToList();
+    var Addresses = _context.Addresses.ToList();
+    var CountriesTrans = _context.CountriesTrans.ToList();
+    var Languages = _context.Languages.ToList();
+
+
+    string selectedLanguage = @Context.Request.Path;
+    int selectedLanguageInt = 1;
+    if (selectedLanguage.Length > 5)
+    {
+        selectedLanguage = selectedLanguage.Substring(1, 2);
+        foreach (var lang in Languages.Where(L => L.Code.ToLower().Equals(selectedLanguage))) { selectedLanguageInt = lang.Id; }
+    };
 }
 
 <h2>Details</h2>
@@ -40,4 +55,47 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+
+
+<div>
+    <h3>@Resources.LabelForAddresses</h3>
+    @foreach (var item in AddressesInRelation)
+    {
+        @if ("RoboticsCompanies" == item.Tablename)
+        {
+        @if(ViewBag.RoboticsCompany == item.Tableid)
+            {
+            @foreach (var addr in Addresses.Where(A => A.Id.Equals(item.Addresses)))
+            {
+                <div class="Address">
+                    <h4>@addr.Company</h4>
+                    <p> @addr.Firstname @addr.Lastname</p>
+                    <p> @addr.Street @addr.Streetnumber</p>
+                    <p> @addr.Zip @addr.City</p>
+                    <p> @addr.State</p>
+
+                    @foreach (var coun in CountriesTrans.Where(L => L.Countries.Equals(addr.Country)))
+                    {                        @if (coun.Language == selectedLanguageInt)
+                    { <p>
+        @coun.Name
+    </p>
+                    }
+                        @if (coun.Name == "")
+                        { @if (coun.Language == 1)
+                        {  <p>
+        @coun.Name
+    </p>
+                        }
+                        }
+                    }
+                    <br/>
+                </div>
+            }
+        }
+        }
+    }
+    <p>
+        <a asp-controller="Addresses" asp-action="CreateAndConnect"  asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies"  asp-route-currentpath="@Context.Request.Path">+@Resources.LabelForAddresses</a>
+    </p>
 </div>

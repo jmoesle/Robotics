@@ -63,6 +63,47 @@ namespace Robotics.Controllers
             }
             return View(books);
         }
+        // GET: Books/CreateAndConnect
+        public IActionResult CreateAndConnect(string tablename, int tableid, int infotype, string currentpath)
+        {
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["infotype"] = infotype;
+            ViewData["currentpath"] = currentpath;
+
+            return View();
+        }
+
+        // POST: Books/CreateAndConnect
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndConnect(string tablename, int tableid, int infotype, string currentpath, [Bind("Id,Firstnameauhor1,Lastnameauhor1,Firstnameauhor2,Lastnameauhor2,Firstnameauhor3,Lastnameauhor3,Furtherauthors,Title,Location,Edition,Publicationdate,Pages")] Books books)
+        {
+            int id = new int();
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(books);
+
+                await _context.SaveChangesAsync();
+
+                List<Books> allbooks = new List<Books>();
+                allbooks = await _context.Books.ToListAsync();
+                foreach (Books item in allbooks)
+                {
+                    if (item == books)
+                    {
+                        id = books.Id;
+                    }
+                }
+             
+                return RedirectToAction("CreateAndConnect", "InfoSourcesInRelations", new { tablename = tablename, tableid = tableid, infotype = infotype, infosourceid = id, currentpath = currentpath });
+            }
+
+            return View(books);
+        }
 
         // GET: Books/Edit/5
         public async Task<IActionResult> Edit(int? id)

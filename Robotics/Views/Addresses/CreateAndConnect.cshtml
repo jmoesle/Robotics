@@ -1,18 +1,21 @@
 @model Robotics.Models.Addresses
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>CreateAndConnect</h2>
 
-<form asp-action="Edit">
+<form asp-action="CreateAndConnect">
     <div class="form-horizontal">
         <h4>Addresses</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
+        <input type="hidden" name="tablename" id="tablename" class="form-control" value="@ViewBag.tablename" />
+        <input type="hidden" name="tableid" id="tableid" class="form-control" value="@ViewBag.tableid" />
+        <input type="hidden" name="currentpath" id="currentpath" class="form-control" value="@ViewBag.currentpath" />
+
         <div class="form-group">
             <label asp-for="Firstname" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -70,10 +73,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Country" class="control-label col-md-2"></label>
+            <label asp-for="Country" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Country" class="form-control" asp-items="ViewBag.Country"></select>
-                <span asp-validation-for="Country" class="text-danger"></span>
+                <select asp-for="Country" class ="form-control" asp-items="ViewBag.Country"></select>
             </div>
         </div>
         <div class="form-group">
@@ -97,12 +99,16 @@
                 <span asp-validation-for="Label" class="text-danger"></span>
             </div>
         </div>
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="CreateAndConnect" class="btn btn-default" />
             </div>
         </div>
     </div>
+
+  
+
 </form>
 
 <div>

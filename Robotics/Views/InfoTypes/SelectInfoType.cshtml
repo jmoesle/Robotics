@@ -1,0 +1,29 @@
+@model IEnumerable<Robotics.Models.InfoTypes>
+
+@{
+    ViewData["Title"] = "SelectInfoType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SelectInfoType</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="CreateAndConnect" asp-controller="@item.Name" asp-route-tablename="@ViewBag.tablename" asp-route-tableid="@ViewBag.tableid" asp-route-infotype="@item.Id" asp-route-currentpath="@ViewBag.currentpath"> @Html.DisplayFor(modelItem => item.Name)</a> 
+</td>
+         
+        </tr>
+}
+    </tbody>
+</table>

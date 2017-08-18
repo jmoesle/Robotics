@@ -6,6 +6,7 @@ namespace Robotics.Models
     public partial class RoboticsCompetitionsTrans
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public int Roboticscompetitions { get; set; }
         public int Language { get; set; }

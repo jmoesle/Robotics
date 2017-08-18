@@ -58,7 +58,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,Roboticscompetitions,Language")] RoboticsCompetitionsTrans roboticsCompetitionsTrans)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Roboticscompetitions,Language")] RoboticsCompetitionsTrans roboticsCompetitionsTrans)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Roboticscompetitions,Language")] RoboticsCompetitionsTrans roboticsCompetitionsTrans)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Roboticscompetitions,Language")] RoboticsCompetitionsTrans roboticsCompetitionsTrans)
         {
             if (id != roboticsCompetitionsTrans.Id)
             {

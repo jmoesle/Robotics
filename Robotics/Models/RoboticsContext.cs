@@ -385,16 +385,21 @@ namespace Robotics.Models
                     .IsRequired()
                     .HasColumnType("varchar(50)");
 
-                entity.HasOne(d => d.InfosourcesNavigation)
+                entity.HasOne(d => d.InfotypesNavigation)
                     .WithMany(p => p.InfoSourcesInRelation)
-                    .HasForeignKey(d => d.Infosources)
+                    .HasForeignKey(d => d.Infotype)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__info_sour__Infos__019E3B86");
+                    .HasConstraintName("FK__info_sour__Infot__035179CE");
+                
             });
 
             modelBuilder.Entity<InfoTypes>(entity =>
             {
                 entity.ToTable("info_types");
+                entity.Property(e => e.Name)
+                .IsRequired()
+                .HasColumnType("varchar(50)");
+
             });
 
             modelBuilder.Entity<Journals>(entity =>

@@ -63,6 +63,47 @@ namespace Robotics.Controllers
             }
             return View(series);
         }
+        // GET: Series/CreateAndConnect
+        public IActionResult CreateAndConnect(string tablename, int tableid, int infotype, string currentpath)
+        {
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["infotype"] = infotype;
+            ViewData["currentpath"] = currentpath;
+
+            return View();
+        }
+
+
+        // POST: Series/CreateAndConnect
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndConnect(string tablename, int tableid, int infotype, string currentpath, [Bind("Id,Firstnameauhor1,Lastnameauhor1,Firstnameauhor2,Lastnameauhor2,Firstnameauhor3,Lastnameauhor3,Furtherauthors,Title,Titleseries,Volume,Location,Edition,Publicationdate,Pages")] Series series)
+        {
+            int id = new int();
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(series);
+
+                await _context.SaveChangesAsync();
+
+                List<Series> allentries = new List<Series>();
+                allentries = await _context.Series.ToListAsync();
+                foreach (Series item in allentries)
+                {
+                    if (item == series)
+                    {
+                        id = series.Id;
+                    }
+                }
+
+                return RedirectToAction("CreateAndConnect", "InfoSourcesInRelations", new { tablename = tablename, tableid = tableid, infotype = infotype, infosourceid = id, currentpath = currentpath });
+            }
+            return View(series);
+        }
 
         // GET: Series/Edit/5
         public async Task<IActionResult> Edit(int? id)

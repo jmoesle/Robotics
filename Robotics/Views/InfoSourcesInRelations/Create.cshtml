@@ -27,9 +27,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Infosources" class="col-md-2 control-label"></label>
+            <label asp-for="Infotype" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Infosources" class ="form-control" asp-items="ViewBag.Infosources"></select>
+                <select asp-for="Infotype" class ="form-control" asp-items="ViewBag.Infotypes"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Infosourceid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Infosourceid" class="form-control" />
+                <span asp-validation-for="Tableid" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

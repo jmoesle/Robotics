@@ -8,8 +8,10 @@ namespace Robotics.Models
         public int Id { get; set; }
         public string Tablename { get; set; }
         public int Tableid { get; set; }
-        public int Infosources { get; set; }
+        public int Infotype { get; set; }
+        public int Infosourceid { get; set; }
 
-        public virtual InfoSources InfosourcesNavigation { get; set; }
+
+        public virtual InfoTypes InfotypesNavigation { get; set; }
     }
 }

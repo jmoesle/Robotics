@@ -4,11 +4,7 @@ using System.Collections.Generic;
 namespace Robotics.Models
 {
     public partial class InfoSources
-    {
-        public InfoSources()
-        {
-            InfoSourcesInRelation = new HashSet<InfoSourcesInRelation>();
-        }
+    { 
 
         public int Id { get; set; }
         public int? Books { get; set; }
@@ -20,7 +16,6 @@ namespace Robotics.Models
         public int? Officialstatements { get; set; }
         public int? Websites { get; set; }
 
-        public virtual ICollection<InfoSourcesInRelation> InfoSourcesInRelation { get; set; }
         public virtual Books BooksNavigation { get; set; }
         public virtual Collections CollectionsNavigation { get; set; }
         public virtual Journals JournalsNavigation { get; set; }

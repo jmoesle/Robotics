@@ -24,6 +24,18 @@ namespace Robotics.Controllers
             return View(await _context.InfoTypes.ToListAsync());
         }
 
+
+        
+
+        // GET: InfoTypes/SelectInfoType
+        public async Task<IActionResult> SelectInfoType(string tablename, int tableid, string currentpath)
+        {
+
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["currentpath"] = currentpath;
+            return View(await _context.InfoTypes.ToListAsync());
+        }
         // GET: InfoTypes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -53,7 +65,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] InfoTypes infoTypes)
+        public async Task<IActionResult> Create([Bind("Id,Name")] InfoTypes infoTypes)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +97,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] InfoTypes infoTypes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] InfoTypes infoTypes)
         {
             if (id != infoTypes.Id)
             {

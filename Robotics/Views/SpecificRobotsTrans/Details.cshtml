@@ -20,8 +20,11 @@
     var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.ToList();
     var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.ToList();
 
+    var InfoSourcesInRelation = _context.InfoSourcesInRelation.ToList();
+    var InfoTypes = _context.InfoTypes.ToList();
+    var Websites = _context.Websites.ToList();
 
- 
+
 
 }
 
@@ -88,14 +91,49 @@
                         {
 
                             <a asp-action="Details" asp-controller="ContributingFieldsTrans" asp-route-id="@item.Id">@contfield.Name</a><br />
-
                         }
-
                     }
-
-
                 }
             }
         </dd>
     </dl>
+</div>
+<a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="SpecificRobots" asp-route-tableid="@Model.Specificrobots" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
+
+<div>
+    <h3>@Resources.LabelForInfoSources</h3>
+    @foreach (var item in InfoSourcesInRelation)
+    {
+        @if ("SpecificRobots" == item.Tablename)
+        {
+            @if (Model.Specificrobots == item.Tableid)
+            {
+
+                @foreach (var infotype in InfoTypes)
+                {
+                @if (infotype.Name.Equals("Websites"))
+                {
+                    @if (infotype.Id == item.Infotype) { 
+                @foreach (var infosource in Websites.Where(A => A.Id.Equals(item.Infosourceid)))
+                {
+                    <div class="Website">
+                        @if(@infosource.Lastname == "") { 
+                        <p>@infosource.Organization : @infosource.Title : @infosource.Title. @infosource.Publicationdate @infosource.Url (@infosource.Calldate). <a href="@infosource.Url">[Link]</a></p>
+                        }
+                        else
+                        {
+                            <p > @infosource.Lastname, @infosource.Firstname : @infosource.Title. @infosource.Publicationdate @infosource.Url (@infosource.Calldate). <a href="@infosource.Url">[Link]</a></p>
+                        }
+                        <br />
+                    </div>
+                }
+                    }
+                }
+                }
+                }
+            }
+    }
+    <p>
+        <a asp-controller="Addresses" asp-action="CreateAndConnect" asp-route-tablename="SpecificRobots" asp-route-tableid="@Model.Specificrobots" asp-route-currentpath="@Context.Request.Path">+@Resources.LabelForAddresses</a>
+    </p>
 </div>

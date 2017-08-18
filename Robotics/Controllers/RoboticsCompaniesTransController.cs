@@ -41,7 +41,7 @@ namespace Robotics.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["RoboticsCompany"] = id;
             return View(roboticsCompaniesTrans);
         }
 

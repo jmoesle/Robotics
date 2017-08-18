@@ -21,7 +21,7 @@ namespace Robotics.Controllers
         // GET: InfoSourcesInRelations
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.InfoSourcesInRelation.Include(i => i.InfosourcesNavigation);
+            var roboticsContext = _context.InfoSourcesInRelation.Include(i => i.InfotypesNavigation);
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace Robotics.Controllers
             }
 
             var infoSourcesInRelation = await _context.InfoSourcesInRelation
-                .Include(i => i.InfosourcesNavigation)
+                .Include(i => i.InfotypesNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (infoSourcesInRelation == null)
             {
@@ -47,7 +47,7 @@ namespace Robotics.Controllers
         // GET: InfoSourcesInRelations/Create
         public IActionResult Create()
         {
-            ViewData["Infosources"] = new SelectList(_context.InfoSources, "Id", "Id");
+            ViewData["Infotypes"] = new SelectList(_context.InfoTypes, "Id", "Name");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Tablename,Tableid,Infosources")] InfoSourcesInRelation infoSourcesInRelation)
+        public async Task<IActionResult> Create([Bind("Id,Tablename,Tableid,Infotype,Infosourceid")] InfoSourcesInRelation infoSourcesInRelation)
         {
             if (ModelState.IsValid)
             {
@@ -64,10 +64,42 @@ namespace Robotics.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Infosources"] = new SelectList(_context.InfoSources, "Id", "Id", infoSourcesInRelation.Infosources);
+            ViewData["Infotypes"] = new SelectList(_context.InfoTypes, "Id", "Name", infoSourcesInRelation.Infotype);
             return View(infoSourcesInRelation);
         }
 
+        // GET: InfoSourcesInRelations/CreateAndConnect
+        public IActionResult CreateAndConnect(string tablename, int tableid, int infotype, int infosourceid, string currentpath)
+        {
+            ViewData["Infotypes"] = new SelectList(_context.InfoTypes, "Id", "Name");
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["infotype"] = infotype;
+            ViewData["infosourceid"] = infosourceid;
+            ViewData["currentpath"] = currentpath;
+            return View();
+        }
+
+        // POST: InfoSourcesInRelations/CreateAndConnect
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndConnect(string currentpath, [Bind("Id,Tablename,Tableid,Infotype,Infosourceid")] InfoSourcesInRelation infoSourcesInRelation)
+        {
+            String[] url = new String[4];
+            if (ModelState.IsValid)
+            {
+                _context.Add(infoSourcesInRelation);
+                await _context.SaveChangesAsync();
+                url = currentpath.Split('/');
+
+                return RedirectToAction(url[3], url[2] , new { id = url[4]});
+            }
+            ViewData["Infotypes"] = new SelectList(_context.InfoTypes, "Id", "Name", infoSourcesInRelation.Infotype);
+            return View(infoSourcesInRelation);
+        }
+        
         // GET: InfoSourcesInRelations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -81,7 +113,7 @@ namespace Robotics.Controllers
             {
                 return NotFound();
             }
-            ViewData["Infosources"] = new SelectList(_context.InfoSources, "Id", "Id", infoSourcesInRelation.Infosources);
+            ViewData["Infotypes"] = new SelectList(_context.InfoTypes, "Id", "Name", infoSourcesInRelation.Infotype);
             return View(infoSourcesInRelation);
         }
 
@@ -90,7 +122,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Tablename,Tableid,Infosources")] InfoSourcesInRelation infoSourcesInRelation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Tablename,Tableid,Infotype,Infosourceid")] InfoSourcesInRelation infoSourcesInRelation)
         {
             if (id != infoSourcesInRelation.Id)
             {
@@ -117,7 +149,7 @@ namespace Robotics.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Infosources"] = new SelectList(_context.InfoSources, "Id", "Id", infoSourcesInRelation.Infosources);
+            ViewData["Infostypes"] = new SelectList(_context.InfoTypes, "Id", "Name", infoSourcesInRelation.Infotype);
             return View(infoSourcesInRelation);
         }
 
@@ -130,7 +162,7 @@ namespace Robotics.Controllers
             }
 
             var infoSourcesInRelation = await _context.InfoSourcesInRelation
-                .Include(i => i.InfosourcesNavigation)
+                .Include(i => i.InfotypesNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (infoSourcesInRelation == null)
             {

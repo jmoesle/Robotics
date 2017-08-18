@@ -44,6 +44,7 @@ namespace Robotics.Controllers
             return View(addressesInRelation);
         }
 
+
         // GET: AddressesInRelations/Create
         public IActionResult Create()
         {
@@ -67,6 +68,41 @@ namespace Robotics.Controllers
             ViewData["Addresses"] = new SelectList(_context.Addresses, "Id", "Id", addressesInRelation.Addresses);
             return View(addressesInRelation);
         }
+
+        // GET: AddressesInRelations/CreateAndConnect
+        public IActionResult CreateAndConnect(string tablename, int tableid, int addressesid, string currentpath)
+        {
+            ViewData["Addresses"] = new SelectList(_context.Addresses, "Id", "Id");
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["addressesid"] = addressesid;
+            ViewData["currentpath"] = currentpath;
+
+
+            return View();
+        }
+
+        // POST: AddressesInRelations/CreateAndConnect
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndConnect(string currentpath, [Bind("Id,Tablename,Tableid,Addresses")] AddressesInRelation addressesInRelation)
+        {
+            String[] url = new String[4];
+            if (ModelState.IsValid)
+            {
+                _context.Add(addressesInRelation);
+                await _context.SaveChangesAsync();
+                url = currentpath.Split('/');
+
+                return RedirectToAction(url[3], url[2], new { id = url[4] });
+            }
+            ViewData["Addresses"] = new SelectList(_context.Addresses, "Id", "Id", addressesInRelation.Addresses);
+            return View(addressesInRelation);
+        }
+
+        
 
         // GET: AddressesInRelations/Edit/5
         public async Task<IActionResult> Edit(int? id)

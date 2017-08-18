@@ -1,0 +1,82 @@
+@model Robotics.Models.OfficialStatements
+
+@{
+    ViewData["Title"] = "CreateAndConnect";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateAndConnect</h2>
+
+<form asp-action="CreateAndConnect">
+    <div class="form-horizontal">
+        <h4>OfficialStatements</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" name="tablename" id="tablename" class="form-control" value="@ViewBag.tablename" />
+        <input type="hidden" name="tableid" id="tableid" class="form-control" value="@ViewBag.tableid" />
+        <input type="hidden" name="infotype" id="infotype" class="form-control" value="@ViewBag.infotype" />
+        <input type="hidden" name="currentpath" id="currentpath" class="form-control" value="@ViewBag.currentpath" />
+        <div class="form-group">
+            <label asp-for="Publisher" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Publisher" class="form-control" />
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Publication" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Publication" class="form-control" />
+                <span asp-validation-for="Publication" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Issue" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Issue" class="form-control" />
+                <span asp-validation-for="Issue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Publicationdate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Publicationdate" class="form-control" />
+                <span asp-validation-for="Publicationdate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pages" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Pages" class="form-control" />
+                <span asp-validation-for="Pages" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="CreateAndConnect" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

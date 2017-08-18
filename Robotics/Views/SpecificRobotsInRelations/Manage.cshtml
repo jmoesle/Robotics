@@ -11,25 +11,27 @@
     var ContributingFieldsTrans = _context.ContributingFieldsTrans.ToList();
     var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.ToList();
     var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.ToList();
-    var BranchesTrans = _context.SpecificRobotsInRelation.ToList();
+    var BusinessTrans = _context.BusinessTrans.ToList();
+    var BranchesTrans = _context.BranchesTrans.ToList();
     var TypesTrans = _context.TypesTrans.ToList();
     var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.ToList();
-    var Roboticsdevelopmentanddevelopmenttools = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
+    var RoboticsDevelopmentAndDevelopmentToolsTrans = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
     var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.ToList();
     var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.ToList();
     var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.ToList();
     var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.ToList();
     var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.ToList();
+    var SpecificRobotsTrans = _context.SpecificRobotsTrans.ToList();
+    var Languages = _context.Languages.ToList();
 
 
-    string language = @Context.Request.Path;
-    int languageInt = 1;
-    if (language.Length > 5)
+
+    string selectedLanguage = @Context.Request.Path;
+    int selectedLanguageInt = 1;
+    if (selectedLanguage.Length > 5)
     {
-        language = language.Substring(1, 2);
-        if ( language == "en") { language = "1"; };
-        if (language == "de") { language = "2";};
-        languageInt = int.Parse(language);
+        selectedLanguage = selectedLanguage.Substring(1, 2);
+        foreach (var lang in Languages.Where(L => L.Code.ToLower().Equals(selectedLanguage))) { selectedLanguageInt = lang.Id; }
     };
 
 }
@@ -92,58 +94,185 @@
         {
             <tr>
                 <td>
-                    @foreach (var CFT in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(item.ContributingfieldsNavigation.Id)))
-                    {   @if (CFT.Language == languageInt){ @CFT.Name}
-                        @if (CFT.Name == "")
-                        { @if (CFT.Language == 1) {   @CFT.Name} }
+@if (item.Contributingfields == null) { }
+else
+{
+
+                    @foreach (var entry in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(item.Contributingfields)))
+                    {   @if (entry.Language == selectedLanguageInt)
+    { @entry.Name}
+                        @if (entry.Name == "")
+                        { @if (entry.Language == 1)
+        {   @entry.Name} }
+                    }
+}
+                </td>
+                <td>
+                    @if (item.Degreeofmaturity == null) { } else { 
+                    @foreach (var entry in DegreeOfMaturityTrans.Where(lm => lm.Degreeofmaturity.Equals(item.Degreeofmaturity)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                        @if (entry.Name == "")
+                    { @if (entry.Language == 1)
+                    {   @entry.Name} }
+                    }
                     }
                 </td>
                 <td>
-                    @if (item.DegreeofmaturityNavigation.Id != null) { 
-                    @foreach (var CFT in DegreeOfMaturityTrans.Where(lm => lm.Degreeofmaturity.Equals(item.DegreeofmaturityNavigation.Id)))
-                    {   @if (CFT.Language == languageInt)
-                    { @CFT.Name}
-                        @if (CFT.Name == "")
-                    { @if (CFT.Language == 1)
-                    {   @CFT.Name} }
+                    @if (item.Branches == null) { }
+                    else
+                    {
+                        @foreach (var entry in BranchesTrans.Where(lm => lm.Branches.Equals(item.Branches)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
                     }
+                </td>
+                <td>
+                    @if (item.Business == null) { }
+                    else
+                    {
+                        @foreach (var entry in BusinessTrans.Where(lm => lm.Business.Equals(item.Business)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
+                    @if (item.Influentialpeople == null) { }
+                    else
+                    {
+                        @foreach (var entry in InfluentialPeopleTrans.Where(lm => lm.Influentialpeople.Equals(item.Influentialpeople)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Firstname @entry.Lastname}
+                            @if (entry.Lastname == "")
+                            { @if (entry.Language == 1)
+                            {  @entry.Firstname @entry.Lastname} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BusinessNavigation.Id)
+                    @if (item.Modesoflocomotion == null) { }
+                    else
+                    {
+                        @foreach (var entry in ModesOfLocomotionTrans.Where(lm => lm.Modesoflocomotion.Equals(item.Modesoflocomotion)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.InfluentialpeopleNavigation.Id)
+                    @if (item.Robotcomponentsanddesignfeatures == null) { }
+                    else
+                    {
+                        @foreach (var entry in RobotComponentsAndDesignFeaturesTrans.Where(lm => lm.Robotcomponentsanddesignfeatures.Equals(item.Robotcomponentsanddesignfeatures)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ModesoflocomotionNavigation.Id)
+                    @if (item.Roboticscompanies == null) { }
+                    else
+                    {
+                        @foreach (var entry in RoboticsCompaniesTrans.Where(lm => lm.Roboticscompanies.Equals(item.Roboticscompanies)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RobotcomponentsanddesignfeaturesNavigation.Id)
+                    @if (item.Roboticscompetitions == null) { }
+                    else
+                    {
+                        @foreach (var entry in RoboticsCompetitionsTrans.Where(lm => lm.Roboticscompetitions.Equals(item.Roboticscompetitions)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RoboticscompaniesNavigation.Id)
+                    @if (item.Roboticsdevelopmentanddevelopmenttools == null) { }
+                    else
+                    {
+                        @foreach (var entry in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(lm => lm.Roboticsdevelopmentanddevelopmenttools.Equals(item.Roboticsdevelopmentanddevelopmenttools)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RoboticscompetitionsNavigation.Id)
+                    @if (item.Roboticsorganizations == null) { }
+                    else
+                    {
+                        @foreach (var entry in RoboticsOrganizationsTrans.Where(lm => lm.Roboticsorganizations.Equals(item.Roboticsorganizations)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RoboticsdevelopmentanddevelopmenttoolsNavigation.Id)
+                    @if (item.Roboticsprinciples == null) { }
+                    else
+                    {
+                        @foreach (var entry in RoboticsPrinciplesTrans.Where(lm => lm.Roboticsprinciples.Equals(item.Roboticsprinciples)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RoboticsorganizationsNavigation.Id)
+                    @if (item.Specificrobots == null) { }
+                    else
+                    {
+                        @foreach (var entry in SpecificRobotsTrans.Where(lm => lm.Specificrobots.Equals(item.Specificrobots)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RoboticsprinciplesNavigation.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpecificrobotsNavigation.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TypesNavigation.Id)
+                    @if (item.Types == null) { }
+                    else
+                    {
+                        @foreach (var entry in TypesTrans.Where(lm => lm.Types.Equals(item.Types)))
+                    {   @if (entry.Language == selectedLanguageInt)
+                    { @entry.Name}
+                            @if (entry.Name == "")
+                            { @if (entry.Language == 1)
+                            {   @entry.Name} }
+                        }
+                    }
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

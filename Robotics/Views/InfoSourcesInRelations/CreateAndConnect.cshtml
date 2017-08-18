@@ -1,48 +1,48 @@
 @model Robotics.Models.InfoSourcesInRelation
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "CreateAndConnect";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>CreateAndConnect</h2>
 
-<form asp-action="Edit">
+<form asp-action="CreateAndConnect">
     <div class="form-horizontal">
         <h4>InfoSourcesInRelation</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
+        <input type="hidden" name="currentpath" id="currentpath" class="form-control" value="@ViewBag.currentpath" />
         <div class="form-group">
             <label asp-for="Tablename" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Tablename" class="form-control" />
+                <input asp-for="Tablename" class="form-control" value="@ViewBag.tablename" />
                 <span asp-validation-for="Tablename" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Tableid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Tableid" class="form-control" />
+                <input asp-for="Tableid" class="form-control" value="@ViewBag.tableid" />
                 <span asp-validation-for="Tableid" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Infotype" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Infotype" class="form-control" asp-items="ViewBag.Infotypes"></select>
+                <select asp-for="Infotype" class ="form-control" value="@ViewBag.infotype" asp-items="ViewBag.Infotypes"></select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="Infosourceid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Infosourceid" class="form-control" />
+                <input asp-for="Infosourceid" class="form-control" value="@ViewBag.infosourceid" />
                 <span asp-validation-for="Tableid" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="CreateAndConnect" class="btn btn-default" />
             </div>
         </div>
     </div>

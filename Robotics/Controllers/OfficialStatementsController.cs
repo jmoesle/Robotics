@@ -64,6 +64,47 @@ namespace Robotics.Controllers
             return View(officialStatements);
         }
 
+        // GET: OfficialStatements/CreateAndConnect
+        public IActionResult CreateAndConnect(string tablename, int tableid, int infotype, string currentpath)
+        {
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+            ViewData["infotype"] = infotype;
+            ViewData["currentpath"] = currentpath;
+
+            return View();
+        }
+
+        // POST: OfficialStatements/CreateAndConnect
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndConnect(string tablename, int tableid, int infotype, string currentpath, [Bind("Id,Publisher,Title,Publication,Issue,Location,Publicationdate,Pages")] OfficialStatements officialStatements)
+        {
+            int id = new int();
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(officialStatements);
+
+                await _context.SaveChangesAsync();
+
+                List<OfficialStatements> allentries = new List<OfficialStatements>();
+                allentries = await _context.OfficialStatements.ToListAsync();
+                foreach (OfficialStatements item in allentries)
+                {
+                    if (item == officialStatements)
+                    {
+                        id = officialStatements.Id;
+                    }
+                }
+
+                return RedirectToAction("CreateAndConnect", "InfoSourcesInRelations", new { tablename = tablename, tableid = tableid, infotype = infotype, infosourceid = id, currentpath = currentpath });
+            }
+            return View(officialStatements);
+        }
+
         // GET: OfficialStatements/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

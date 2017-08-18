@@ -53,7 +53,7 @@ namespace Robotics.Controllers
             ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code");
             SpecificRobotsTrans specificrobotstrans = new SpecificRobotsTrans();
             specificrobotstrans.Specificrobots = specificrobots;
-            //   ViewData["Specificrobots"] = new SelectList(_context.SpecificRobots, "Id", "Id");
+              ViewData["Specificrobots"] = specificrobots;
             return View(specificrobotstrans);
         }
 
