@@ -89,6 +89,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die at ähnelt.
+        /// </summary>
+        public static string LabelForAt {
+            get {
+                return ResourceManager.GetString("LabelForAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Books ähnelt.
         /// </summary>
         public static string LabelForBooks {
@@ -152,7 +161,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Soruces ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sources ähnelt.
         /// </summary>
         public static string LabelForInfoSources {
             get {
@@ -202,6 +211,24 @@ namespace Resources {
         public static string LabelForOverview {
             get {
                 return ResourceManager.GetString("LabelForOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die p. ähnelt.
+        /// </summary>
+        public static string LabelForPagesAbbreviation {
+            get {
+                return ResourceManager.GetString("LabelForPagesAbbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string LabelForPublisherAbbreviation {
+            get {
+                return ResourceManager.GetString("LabelForPublisherAbbreviation", resourceCulture);
             }
         }
         

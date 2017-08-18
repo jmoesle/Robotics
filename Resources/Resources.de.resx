@@ -126,6 +126,9 @@
   <data name="LabelForApplicationUses" xml:space="preserve">
     <value>Anwendung beinhaltet:</value>
   </data>
+  <data name="LabelForAt" xml:space="preserve">
+    <value>vom</value>
+  </data>
   <data name="LabelForBooks" xml:space="preserve">
     <value>Bücher</value>
   </data>
@@ -164,6 +167,12 @@
   </data>
   <data name="LabelForOverview" xml:space="preserve">
     <value>Übersicht</value>
+  </data>
+  <data name="LabelForPagesAbbreviation" xml:space="preserve">
+    <value>S.</value>
+  </data>
+  <data name="LabelForPublisherAbbreviation" xml:space="preserve">
+    <value>(Hg.)</value>
   </data>
   <data name="LabelForRobot" xml:space="preserve">
     <value>Roboter</value>

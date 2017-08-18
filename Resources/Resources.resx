@@ -126,6 +126,9 @@
   <data name="LabelForApplicationUses" xml:space="preserve">
     <value>Apllicaltion Uses</value>
   </data>
+  <data name="LabelForAt" xml:space="preserve">
+    <value>at</value>
+  </data>
   <data name="LabelForBooks" xml:space="preserve">
     <value>Books</value>
   </data>
@@ -148,7 +151,7 @@
     <value>Influantial People</value>
   </data>
   <data name="LabelForInfoSources" xml:space="preserve">
-    <value>Soruces</value>
+    <value>Sources</value>
   </data>
   <data name="LabelForJournals" xml:space="preserve">
     <value>Journals</value>
@@ -164,6 +167,12 @@
   </data>
   <data name="LabelForOverview" xml:space="preserve">
     <value>Overview</value>
+  </data>
+  <data name="LabelForPagesAbbreviation" xml:space="preserve">
+    <value>p.</value>
+  </data>
+  <data name="LabelForPublisherAbbreviation" xml:space="preserve">
+    <value />
   </data>
   <data name="LabelForRobot" xml:space="preserve">
     <value>Robot</value>
