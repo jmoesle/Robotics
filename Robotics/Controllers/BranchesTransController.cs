@@ -60,8 +60,9 @@ namespace Robotics.Controllers
         }
 
         // GET: BranchesTrans/Create
-        public IActionResult Create()
+        public IActionResult Create(string currentpath)
         {
+            ViewData["currentpath"] = currentpath;
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
             ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code");
             return View();
@@ -72,13 +73,16 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Branches,Language")] BranchesTrans BranchesTrans)
+        public async Task<IActionResult> Create(int Branches, string currentpath, [Bind("Id,Name,Description,Branches,Language")] BranchesTrans BranchesTrans)
         {
             if (ModelState.IsValid)
             {
+                if(Branches == 0) { Branches branch = new Branches(); _context.Add(branch); BranchesTrans.Branches = branch.Id; }
                 _context.Add(BranchesTrans);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                String[] url = new String[4];
+                url = currentpath.Split('/');
+                return RedirectToAction("Index", url[2] );
             }
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", BranchesTrans.Branches);
             ViewData["Language"] = new SelectList(_context.Languages, "Id", "Code", BranchesTrans.Language);

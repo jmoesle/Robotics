@@ -80,7 +80,7 @@
 
 
 
-        Write("{lat: " + address.Latitude.ToString().Replace(",", ".") + ", lng: " + address.Longitude.ToString().Replace(",", ".") + ", info: ");
+        Write("{lat: " + address.Latitude.Replace(",", ".") + ", lng: " + address.Longitude.Replace(",", ".") + ", info: ");
         @Html.Raw("\"");
         Write(address.Firstname + " " + address.Lastname);
         @Html.Raw("<br />");

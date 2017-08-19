@@ -1,4 +1,4 @@
-@model IEnumerable<Robotics.Models.RoboticsCompetitionsInRelation>
+@model IEnumerable<Robotics.Models.BusinessTrans>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,22 +8,22 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-currentpath="@Context.Request.Path">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ContributingfieldsNavigation)
-            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
             <th>
                 @Html.DisplayNameFor(model => model.BusinessNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BranchesNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticscompetitionsNavigation)
+                @Html.DisplayNameFor(model => model.LanguageNavigation)
             </th>
             <th></th>
         </tr>
@@ -32,16 +32,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ContributingfieldsNavigation.Id)
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BusinessNavigation.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoboticscompetitionsNavigation.Id)
+                @Html.DisplayFor(modelItem => item.LanguageNavigation.Code)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

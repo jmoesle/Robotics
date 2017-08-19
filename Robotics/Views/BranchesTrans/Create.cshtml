@@ -12,6 +12,7 @@
         <h4>BranchesTrans</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" name="currentpath" id="currentpath" class="form-control" value="@ViewBag.currentpath" />
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -29,7 +30,9 @@
         <div class="form-group">
             <label asp-for="Branches" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Branches" class ="form-control" asp-items="ViewBag.Branches"></select>
+                <select asp-for="Branches" class ="form-control"  asp-items="ViewBag.Branches">
+                    <option value="0" >@Resources.LabelForNewEntry</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

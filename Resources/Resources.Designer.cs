@@ -116,6 +116,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Business ähnelt.
+        /// </summary>
+        public static string LabelForBusiness {
+            get {
+                return ResourceManager.GetString("LabelForBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Collections ähnelt.
         /// </summary>
         public static string LabelForCollections {
@@ -152,11 +161,20 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Degree of maturity ähnelt.
+        /// </summary>
+        public static string LabelForDegreeOfMaturity {
+            get {
+                return ResourceManager.GetString("LabelForDegreeOfMaturity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Influantial People ähnelt.
         /// </summary>
-        public static string LabelForInfluantialPeople {
+        public static string LabelForInfluentialPeople {
             get {
-                return ResourceManager.GetString("LabelForInfluantialPeople", resourceCulture);
+                return ResourceManager.GetString("LabelForInfluentialPeople", resourceCulture);
             }
         }
         
@@ -184,6 +202,24 @@ namespace Resources {
         public static string LabelForLearnMore {
             get {
                 return ResourceManager.GetString("LabelForLearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modes of Locomotion ähnelt.
+        /// </summary>
+        public static string LabelForModesOfLocomotion {
+            get {
+                return ResourceManager.GetString("LabelForModesOfLocomotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New entry ähnelt.
+        /// </summary>
+        public static string LabelForNewEntry {
+            get {
+                return ResourceManager.GetString("LabelForNewEntry", resourceCulture);
             }
         }
         
@@ -224,6 +260,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Properties ähnelt.
+        /// </summary>
+        public static string LabelForProperties {
+            get {
+                return ResourceManager.GetString("LabelForProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Property Category ähnelt.
+        /// </summary>
+        public static string LabelForPropertyCategory {
+            get {
+                return ResourceManager.GetString("LabelForPropertyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
         /// </summary>
         public static string LabelForPublisherAbbreviation {
@@ -260,6 +314,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Competitions ähnelt.
+        /// </summary>
+        public static string LabelForRoboticsCompetitions {
+            get {
+                return ResourceManager.GetString("LabelForRoboticsCompetitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Components And Design Features ähnelt.
         /// </summary>
         public static string LabelForRoboticsComponentsAndDesignFeatures {
@@ -283,6 +346,15 @@ namespace Resources {
         public static string LabelForRoboticsOrganization {
             get {
                 return ResourceManager.GetString("LabelForRoboticsOrganization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Robotics Organizations ähnelt.
+        /// </summary>
+        public static string LabelForRoboticsOrganizations {
+            get {
+                return ResourceManager.GetString("LabelForRoboticsOrganizations", resourceCulture);
             }
         }
         

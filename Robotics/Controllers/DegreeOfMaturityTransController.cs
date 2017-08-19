@@ -58,10 +58,12 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Degreeofmaturity,Language")] DegreeOfMaturityTrans degreeOfMaturityTrans)
+        public async Task<IActionResult> Create(int DegreeOfMaturity, [Bind("Id,Name,Degreeofmaturity,Language")] DegreeOfMaturityTrans degreeOfMaturityTrans)
         {
             if (ModelState.IsValid)
             {
+                if (DegreeOfMaturity == 0) { DegreeOfMaturity entry = new DegreeOfMaturity(); _context.Add(entry); degreeOfMaturityTrans.Degreeofmaturity = entry.Id; }
+            
                 _context.Add(degreeOfMaturityTrans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

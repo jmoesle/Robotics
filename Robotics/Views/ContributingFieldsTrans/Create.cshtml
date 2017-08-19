@@ -29,7 +29,9 @@
         <div class="form-group">
             <label asp-for="Contributingfields" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Contributingfields" class ="form-control" asp-items="ViewBag.Contributingfields"></select>
+                <select asp-for="Contributingfields" class ="form-control" asp-items="ViewBag.Contributingfields">
+                    <option value="0">@Resources.LabelForNewEntry</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

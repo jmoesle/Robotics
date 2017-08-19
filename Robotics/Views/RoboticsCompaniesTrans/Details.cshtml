@@ -2,9 +2,23 @@
 @using Robotics.Models
 @inject RoboticsContext _context
 
+
+
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var InfoSourcesInRelation = _context.InfoSourcesInRelation.ToList();
+    var InfoTypes = _context.InfoTypes.ToList();
+    var Websites = _context.Websites.ToList();
+    var Books = _context.Books.ToList();
+    var Journals = _context.Journals.ToList();
+    var Series = _context.Series.ToList();
+    var Collections = _context.Collections.ToList();
+    var Unpublished = _context.Unpublished.ToList();
+    var OfficialStatements = _context.OfficialStatements.ToList();
+    var Newspapers = _context.Newspapers.ToList();
+
     var AddressesInRelation = _context.AddressesInRelation.ToList();
     var Addresses = _context.Addresses.ToList();
     var CountriesTrans = _context.CountriesTrans.ToList();
@@ -57,45 +71,191 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-
-<div>
+<div class="Addresses">
     <h3>@Resources.LabelForAddresses</h3>
+    <a asp-controller="Addresses" asp-action="CreateAndConnect" asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies" asp-route-currentpath="@Context.Request.Path">+@Resources.LabelForAddresses</a>
+
     @foreach (var item in AddressesInRelation)
     {
         @if ("RoboticsCompanies" == item.Tablename)
         {
-        @if(ViewBag.RoboticsCompany == item.Tableid)
+            @if (Model.Roboticscompanies == item.Tableid)
             {
-            @foreach (var addr in Addresses.Where(A => A.Id.Equals(item.Addresses)))
-            {
-                <div class="Address">
-                    <h4>@addr.Company</h4>
-                    <p> @addr.Firstname @addr.Lastname</p>
-                    <p> @addr.Street @addr.Streetnumber</p>
-                    <p> @addr.Zip @addr.City</p>
-                    <p> @addr.State</p>
+                @foreach (var addr in Addresses.Where(A => A.Id.Equals(item.Addresses)))
+                {
+                    <div class="Address">
+                        <h4>@addr.Company</h4>
+                        <p> @addr.Firstname @addr.Lastname</p>
+                        <p> @addr.Street @addr.Streetnumber</p>
+                        <p> @addr.Zip @addr.City</p>
+                        <p> @addr.State</p>
 
-                    @foreach (var coun in CountriesTrans.Where(L => L.Countries.Equals(addr.Country)))
-                    {                        @if (coun.Language == selectedLanguageInt)
-                    { <p>
-        @coun.Name
-    </p>
-                    }
-                        @if (coun.Name == "")
-                        { @if (coun.Language == 1)
-                        {  <p>
-        @coun.Name
-    </p>
+                        @foreach (var coun in CountriesTrans.Where(L => L.Countries.Equals(addr.Country)))
+                        {                        @if (coun.Language == selectedLanguageInt)
+                        { <p>@coun.Name</p>
                         }
+                            @if (coun.Name == null)
+                            { @if (coun.Language == 1)
+                            {  <p>@coun.Name</p>
+                            }
+                            }
                         }
-                    }
-                    <br/>
-                </div>
+                        <br />
+                    </div>
+                }
             }
         }
+    }
+</div>
+
+<div class="InfoSources">
+    <h3>@Resources.LabelForInfoSources</h3>
+    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
+    @foreach (var item in InfoSourcesInRelation)
+    {
+        @if ("RoboticsCompanies" == item.Tablename)
+        {
+            @if (Model.Roboticscompanies == item.Tableid)
+            {
+                @foreach (var infotype in InfoTypes)
+                {
+                    @if (infotype.Name.Equals("Websites"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Websites.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Website">
+                                    @if (infosource.Lastname == null)
+                                    {
+                                        <p>@infosource.Organization : @infosource.Title : @infosource.Title. @infosource.Publicationdate @infosource.Url (@infosource.Calldate). <a href="@infosource.Url">[Link]</a></p> }
+                                    else
+                                    { <p> @infosource.Lastname, @infosource.Firstname : @infosource.Title. @infosource.Publicationdate @infosource.Url (@infosource.Calldate). <a href="@infosource.Url">[Link]</a></p> }
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Books"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Books.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Books">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        {<span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> }: @infosource.Title. @infosource.Location <sup>@infosource.Edition</sup> @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Journals"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Journals.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Journals">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        { <span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> }: @infosource.Title. In: @infosource.Journalname, @infosource.Volume @infosource.Publicationdate, @infosource.Issue, @Resources.LabelForPagesAbbreviation @infosource.Pages. <a href="@infosource.Url">[Link]</a>
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Collections"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Collections.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Collections">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        { <span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> } In: @infosource.Publisher @Resources.LabelForPublisherAbbreviation: @infosource.Title. @infosource.Location <sup>@infosource.Edition</sup> @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Series"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Series.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Series">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        { <span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> }: @infosource.Title (=@infosource.Titleseries, @infosource.Volume). @infosource.Location <sup>@infosource.Edition</sup> @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("OfficialStatements"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in OfficialStatements.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="OfficialStatements">
+                                    <p>
+                                        @infosource.Publisher @Resources.LabelForPublisherAbbreviation: @infosource.Title
+                                        @if (infosource.Publication != null)
+                                        {
+                                            <span>In: @infosource.Publication, @infosource.Issue.</span> }  @infosource.Location @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                        </p>
+                                    </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Newspapers"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Newspapers.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Newspapers">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        { <span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> }: @infosource.Title. In: @infosource.Newspapername @infosource.Issue @Resources.LabelForAt @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    @if (infotype.Name.Equals("Unpublished"))
+                    {
+                        @if (infotype.Id == item.Infotype)
+                        {
+                            @foreach (var infosource in Unpublished.Where(A => A.Id.Equals(item.Infosourceid)))
+                            {
+                                <div class="Unpublished">
+                                    <p>
+                                        @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
+                                        { <span> / @infosource.Lastnameauhor2, @infosource.Firstnameauhor2</span> } @if (infosource.Lastnameauhor3 != null)
+                                        { <span> / @infosource.Lastnameauhor3, @infosource.Firstnameauhor3</span> } @if (infosource.Furtherauthors != null)
+                                        { <span> / @infosource.Furtherauthors</span> }: @infosource.Title. @infosource.Type, @infosource.Schoollocation <sup>@infosource.Edition</sup> @infosource.Publicationdate, @Resources.LabelForPagesAbbreviation @infosource.Pages.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-    <p>
-        <a asp-controller="Addresses" asp-action="CreateAndConnect"  asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies"  asp-route-currentpath="@Context.Request.Path">+@Resources.LabelForAddresses</a>
-    </p>
 </div>

@@ -81,6 +81,7 @@ namespace Robotics.Controllers
         public async Task<IActionResult> CreateAndConnect(string tablename, int tableid, int infotype, string currentpath, [Bind("Id,Firstnameauhor1,Lastnameauhor1,Firstnameauhor2,Lastnameauhor2,Firstnameauhor3,Lastnameauhor3,Furtherauthors,Title,Type,Schoollocation,Edition,Publicationdate,Pages")] Unpublished unpublished)
         {
             int id = new int();
+            String[] url = new String[4];
 
             if (ModelState.IsValid)
             {
@@ -97,8 +98,12 @@ namespace Robotics.Controllers
                         id = unpublished.Id;
                     }
                 }
-
-                return RedirectToAction("CreateAndConnect", "InfoSourcesInRelations", new { tablename = tablename, tableid = tableid, infotype = infotype, infosourceid = id, currentpath = currentpath });
+                var relation = new InfoSourcesInRelation { Tablename = tablename, Tableid = tableid, Infotype = infotype, Infosourceid = id };
+                _context.Add(relation);
+                await _context.SaveChangesAsync();
+                url = currentpath.Split('/');
+                return RedirectToAction(url[3], url[2], new { id = url[4] });
+                //return RedirectToAction("CreateAndConnect", "InfoSourcesInRelations", new { tablename = tablename, tableid = tableid, infotype = infotype, infosourceid = id, currentpath = currentpath });
             }
             return View(unpublished);
         }

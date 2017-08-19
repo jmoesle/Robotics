@@ -43,7 +43,9 @@
         <div class="form-group">
             <label asp-for="Influentialpeople" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Influentialpeople" class ="form-control" asp-items="ViewBag.Influentialpeople"></select>
+                <select asp-for="Influentialpeople" class ="form-control" asp-items="ViewBag.Influentialpeople">
+                    <option value="0">@Resources.LabelForNewEntry</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

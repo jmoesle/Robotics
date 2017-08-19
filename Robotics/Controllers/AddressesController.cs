@@ -95,6 +95,8 @@ namespace Robotics.Controllers
         public async Task<IActionResult> CreateAndConnect(string tablename, int tableid, string currentpath, [Bind("Id,Firstname,Lastname,Company,Street,Streetnumber,Zip,City,State,Country,Latitude,Longitude,Label")] Addresses addresses)
         {
             int id = new int();
+            String[] url = new String[4];
+
             if (ModelState.IsValid)
             {
                 _context.Add(addresses);
@@ -109,9 +111,15 @@ namespace Robotics.Controllers
                             id = addresses.Id;
                         }
                     }
-                    return RedirectToAction("CreateAndConnect", "AddressesInRelations", new {tablename = tablename, tableid = tableid, addressesid = id, currentpath = currentpath });
+                var relation = new AddressesInRelation {Tablename = tablename, Tableid = tableid, Addresses = id };
+                _context.Add(relation);
+                await _context.SaveChangesAsync();
+                url = currentpath.Split('/');
 
-                
+                return RedirectToAction(url[3], url[2], new { id = url[4] });
+                // return RedirectToAction("CreateAndConnect", "AddressesInRelations", new {tablename = tablename, tableid = tableid, addressesid = id, currentpath = currentpath });
+
+  
             }
             ViewData["Country"] = new SelectList(_context.Countries, "Id", "Code", addresses.Country);
             return View(addresses);

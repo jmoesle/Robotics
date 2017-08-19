@@ -1,17 +1,18 @@
-@model Robotics.Models.RoboticsPrinciplesTrans
+@model Robotics.Models.BusinessTrans
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>RoboticsPrinciplesTrans</h4>
+        <h4>BusinessTrans</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -27,22 +28,22 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Roboticsprinciples" class="col-md-2 control-label"></label>
+            <label asp-for="Business" class="control-label col-md-2"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticsprinciples" class ="form-control" asp-items="ViewBag.Roboticsprinciples">
-                    <option value="0">@Resources.LabelForNewEntry</option>
-                </select>
+                <select asp-for="Business" class="form-control" asp-items="ViewBag.Business"></select>
+                <span asp-validation-for="Business" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Language" class="col-md-2 control-label"></label>
+            <label asp-for="Language" class="control-label col-md-2"></label>
             <div class="col-md-10">
-                <select asp-for="Language" class ="form-control" asp-items="ViewBag.Language"></select>
+                <select asp-for="Language" class="form-control" asp-items="ViewBag.Language"></select>
+                <span asp-validation-for="Language" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

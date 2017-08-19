@@ -19,6 +19,12 @@
             </div>
         </div>
         <div class="form-group">
+    <label asp-for="Business" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <select asp-for="Business" class="form-control" asp-items="ViewBag.Business"></select>
+    </div>
+</div>
+        <div class="form-group">
             <label asp-for="Branches" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="Branches" class ="form-control" asp-items="ViewBag.Branches"></select>

@@ -58,11 +58,13 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Roboticsdevelopmentanddevelopmenttools,Language")] RoboticsDevelopmentAndDevelopmentToolsTrans roboticsDevelopmentAndDevelopmentToolsTrans)
+        public async Task<IActionResult> Create(int RoboticsDevelopmentAndDevelopmentTools, [Bind("Id,Name,Description,Roboticsdevelopmentanddevelopmenttools,Language")] RoboticsDevelopmentAndDevelopmentToolsTrans roboticsDevelopmentAndDevelopmentToolsTrans)
         {
             if (ModelState.IsValid)
-            {
-                _context.Add(roboticsDevelopmentAndDevelopmentToolsTrans);
+            { 
+                if (RoboticsDevelopmentAndDevelopmentTools == 0) { RoboticsDevelopmentAndDevelopmentTools entry = new RoboticsDevelopmentAndDevelopmentTools(); _context.Add(entry); roboticsDevelopmentAndDevelopmentToolsTrans.Roboticsdevelopmentanddevelopmenttools = entry.Id; }
+
+            _context.Add(roboticsDevelopmentAndDevelopmentToolsTrans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

@@ -22,12 +22,17 @@ namespace Robotics.Models
         public string State { get; set; }
         public int? Country { get; set; }
 
-        [RegularExpression(@"^\d+\.\d{0,6}$")]
-        [Range(-90, 90)]
-        public decimal Latitude { get; set; }
-        [RegularExpression(@"^\d+\.\d{0,6}$")]
-        [Range(-180, 180)]
-        public decimal Longitude { get; set; }
+        [RegularExpression(@"^\d+\.\d{0,9}$")]
+        public string Latitude { get; set; }
+        /// <Latitude>
+        /// Latitude must be between 90 and -90
+        /// </Latitude>
+
+        [RegularExpression(@"^\d+\.\d{0,9}$")]
+        public string Longitude { get; set; }
+        /// <Longitude>
+        /// Longitude must be between 180 and -180
+        /// </Longitude>
         public string Label { get; set; }
 
         public virtual ICollection<AddressesInRelation> AddressesInRelation { get; set; }

@@ -21,7 +21,7 @@ namespace Robotics.Controllers
         // GET: RoboticsCompaniesInRelations
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.RoboticsCompaniesInRelation.Include(r => r.ContributingfieldsNavigation).Include(r => r.BranchesNavigation).Include(r => r.RoboticscompaniesNavigation);
+            var roboticsContext = _context.RoboticsCompaniesInRelation.Include(r => r.ContributingfieldsNavigation).Include(r => r.BusinessNavigation).Include(r => r.BranchesNavigation).Include(r => r.RoboticscompaniesNavigation);
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Robotics.Controllers
 
             var roboticsCompaniesInRelation = await _context.RoboticsCompaniesInRelation
                 .Include(r => r.ContributingfieldsNavigation)
+                .Include(r => r.BusinessNavigation)
                 .Include(r => r.BranchesNavigation)
                 .Include(r => r.RoboticscompaniesNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -50,6 +51,8 @@ namespace Robotics.Controllers
         public IActionResult Create()
         {
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id");
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id");
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
             ViewData["Roboticscompanies"] = new SelectList(_context.RoboticsCompanies, "Id", "Id");
             return View();
@@ -60,7 +63,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Roboticscompanies,Branches,Contributingfields")] RoboticsCompaniesInRelation roboticsCompaniesInRelation)
+        public async Task<IActionResult> Create([Bind("Id,Roboticscompanies,Business,Branches,Contributingfields")] RoboticsCompaniesInRelation roboticsCompaniesInRelation)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +72,8 @@ namespace Robotics.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompaniesInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompaniesInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompaniesInRelation.Branches);
             ViewData["Roboticscompanies"] = new SelectList(_context.RoboticsCompanies, "Id", "Id", roboticsCompaniesInRelation.Roboticscompanies);
             return View(roboticsCompaniesInRelation);
@@ -88,6 +93,8 @@ namespace Robotics.Controllers
                 return NotFound();
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompaniesInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompaniesInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompaniesInRelation.Branches);
             ViewData["Roboticscompanies"] = new SelectList(_context.RoboticsCompanies, "Id", "Id", roboticsCompaniesInRelation.Roboticscompanies);
             return View(roboticsCompaniesInRelation);
@@ -98,7 +105,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Roboticscompanies,Branches,Contributingfields")] RoboticsCompaniesInRelation roboticsCompaniesInRelation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Roboticscompanies,Business,Branches,Contributingfields")] RoboticsCompaniesInRelation roboticsCompaniesInRelation)
         {
             if (id != roboticsCompaniesInRelation.Id)
             {
@@ -126,6 +133,8 @@ namespace Robotics.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompaniesInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompaniesInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompaniesInRelation.Branches);
             ViewData["Roboticscompanies"] = new SelectList(_context.RoboticsCompanies, "Id", "Id", roboticsCompaniesInRelation.Roboticscompanies);
             return View(roboticsCompaniesInRelation);
@@ -141,6 +150,7 @@ namespace Robotics.Controllers
 
             var roboticsCompaniesInRelation = await _context.RoboticsCompaniesInRelation
                 .Include(r => r.ContributingfieldsNavigation)
+                  .Include(r => r.BusinessNavigation)
                 .Include(r => r.BranchesNavigation)
                 .Include(r => r.RoboticscompaniesNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);

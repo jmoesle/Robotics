@@ -1,4 +1,4 @@
-@model Robotics.Models.RoboticsDevelopmentAndDevelopmentToolsTrans
+@model Robotics.Models.BusinessTrans
 @using Robotics.Models
 @inject RoboticsContext _context
 @{
@@ -20,7 +20,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>RoboticsDevelopmentAndDevelopmentToolsTrans</h4>
+    <h4>BusinessTrans</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,16 +36,16 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.BusinessNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BusinessNavigation.Id)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.LanguageNavigation)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.LanguageNavigation.Code)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RoboticsdevelopmentanddevelopmenttoolsNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RoboticsdevelopmentanddevelopmenttoolsNavigation.Id)
         </dd>
     </dl>
 </div>
@@ -55,12 +55,12 @@
 </div>
 <div class="InfoSources">
     <h3>@Resources.LabelForInfoSources</h3>
-    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="RoboticsDevelopmentAndDevelopmentTools" asp-route-tableid="@Model.Roboticsdevelopmentanddevelopmenttools" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
+    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="Business" asp-route-tableid="@Model.Business" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
     @foreach (var item in InfoSourcesInRelation)
     {
-        @if ("RoboticsDevelopmentAndDevelopmentTools" == item.Tablename)
+        @if ("Business" == item.Tablename)
         {
-            @if (Model.Roboticsdevelopmentanddevelopmenttools == item.Tableid)
+            @if (Model.Business == item.Tableid)
             {
                 @foreach (var infotype in InfoTypes)
                 {

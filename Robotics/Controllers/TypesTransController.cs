@@ -58,10 +58,12 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Language,Types")] TypesTrans typesTrans)
+        public async Task<IActionResult> Create(int Types, [Bind("Id,Name,Description,Language,Types")] TypesTrans typesTrans)
         {
             if (ModelState.IsValid)
             {
+                if (Types == 0) { Types entry = new Types(); _context.Add(entry); typesTrans.Types = entry.Id; }
+
                 _context.Add(typesTrans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

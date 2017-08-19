@@ -21,7 +21,7 @@ namespace Robotics.Controllers
         // GET: RoboticsCompetitionsInRelations
         public async Task<IActionResult> Index()
         {
-            var roboticsContext = _context.RoboticsCompetitionsInRelation.Include(r => r.ContributingfieldsNavigation).Include(r => r.BranchesNavigation).Include(r => r.RoboticscompetitionsNavigation);
+            var roboticsContext = _context.RoboticsCompetitionsInRelation.Include(r => r.ContributingfieldsNavigation).Include(r => r.BusinessNavigation).Include(r => r.BranchesNavigation).Include(r => r.RoboticscompetitionsNavigation);
             return View(await roboticsContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Robotics.Controllers
 
             var roboticsCompetitionsInRelation = await _context.RoboticsCompetitionsInRelation
                 .Include(r => r.ContributingfieldsNavigation)
+                .Include(r => r.BusinessNavigation)
                 .Include(r => r.BranchesNavigation)
                 .Include(r => r.RoboticscompetitionsNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -50,6 +51,8 @@ namespace Robotics.Controllers
         public IActionResult Create()
         {
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id");
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id");
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id");
             ViewData["Roboticscompetitions"] = new SelectList(_context.RoboticsCompetitions, "Id", "Id");
             return View();
@@ -60,7 +63,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Roboticscompetitions,Branches,Contributingfields")] RoboticsCompetitionsInRelation roboticsCompetitionsInRelation)
+        public async Task<IActionResult> Create([Bind("Id,Roboticscompetitions,Business,Branches,Contributingfields")] RoboticsCompetitionsInRelation roboticsCompetitionsInRelation)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +72,8 @@ namespace Robotics.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompetitionsInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompetitionsInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompetitionsInRelation.Branches);
             ViewData["Roboticscompetitions"] = new SelectList(_context.RoboticsCompetitions, "Id", "Id", roboticsCompetitionsInRelation.Roboticscompetitions);
             return View(roboticsCompetitionsInRelation);
@@ -88,6 +93,8 @@ namespace Robotics.Controllers
                 return NotFound();
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompetitionsInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompetitionsInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompetitionsInRelation.Branches);
             ViewData["Roboticscompetitions"] = new SelectList(_context.RoboticsCompetitions, "Id", "Id", roboticsCompetitionsInRelation.Roboticscompetitions);
             return View(roboticsCompetitionsInRelation);
@@ -98,7 +105,7 @@ namespace Robotics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Roboticscompetitions,Branches,Contributingfields")] RoboticsCompetitionsInRelation roboticsCompetitionsInRelation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Roboticscompetitions,Business,Branches,Contributingfields")] RoboticsCompetitionsInRelation roboticsCompetitionsInRelation)
         {
             if (id != roboticsCompetitionsInRelation.Id)
             {
@@ -126,6 +133,8 @@ namespace Robotics.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Contributingfields"] = new SelectList(_context.ContributingFields, "Id", "Id", roboticsCompetitionsInRelation.Contributingfields);
+            ViewData["Business"] = new SelectList(_context.Business, "Id", "Id", roboticsCompetitionsInRelation.Business);
+
             ViewData["Branches"] = new SelectList(_context.Branches, "Id", "Id", roboticsCompetitionsInRelation.Branches);
             ViewData["Roboticscompetitions"] = new SelectList(_context.RoboticsCompetitions, "Id", "Id", roboticsCompetitionsInRelation.Roboticscompetitions);
             return View(roboticsCompetitionsInRelation);
@@ -141,6 +150,8 @@ namespace Robotics.Controllers
 
             var roboticsCompetitionsInRelation = await _context.RoboticsCompetitionsInRelation
                 .Include(r => r.ContributingfieldsNavigation)
+                                .Include(r => r.BusinessNavigation)
+
                 .Include(r => r.BranchesNavigation)
                 .Include(r => r.RoboticscompetitionsNavigation)
                 .SingleOrDefaultAsync(m => m.Id == id);

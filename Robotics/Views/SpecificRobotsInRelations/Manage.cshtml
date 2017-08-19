@@ -1,28 +1,69 @@
 @model Robotics.Models.SpecificRobotsInRelation
 @using Robotics.Models
-@inject RoboticsContext _context
-
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ICollection<SpecificRobotsInRelation> list = ViewBag.Specificrobotsinrelation;
-    var listspecificrobotsinrelation = _context.SpecificRobotsInRelation.ToList();
-    var ContributingFieldsTrans = _context.ContributingFieldsTrans.ToList();
-    var ModesOfLocomotionTrans = _context.ModesOfLocomotionTrans.ToList();
-    var RoboticsPrinciplesTrans = _context.RoboticsPrinciplesTrans.ToList();
-    var BusinessTrans = _context.BusinessTrans.ToList();
-    var BranchesTrans = _context.BranchesTrans.ToList();
-    var TypesTrans = _context.TypesTrans.ToList();
-    var RobotComponentsAndDesignFeaturesTrans = _context.RobotComponentsAndDesignFeaturesTrans.ToList();
-    var RoboticsDevelopmentAndDevelopmentToolsTrans = _context.RoboticsDevelopmentAndDevelopmentToolsTrans.ToList();
-    var RoboticsCompaniesTrans = _context.RoboticsCompaniesTrans.ToList();
-    var RoboticsOrganizationsTrans = _context.RoboticsOrganizationsTrans.ToList();
-    var RoboticsCompetitionsTrans = _context.RoboticsCompetitionsTrans.ToList();
-    var InfluentialPeopleTrans = _context.InfluentialPeopleTrans.ToList();
-    var DegreeOfMaturityTrans = _context.DegreeOfMaturityTrans.ToList();
-    var SpecificRobotsTrans = _context.SpecificRobotsTrans.ToList();
-    var Languages = _context.Languages.ToList();
+    List<SpecificRobotsInRelation> listspecificrobotsinrelation = ViewBag.listspecificrobotsinrelation;
+
+    List<Languages> Languages = ViewBag.Languages;
+
+    int Specificrobots = ViewBag.Specificrobots;
+
+    List<ContributingFieldsTrans> ContributingFieldsTrans = ViewBag.ContributingFieldsTrans;
+    List<ModesOfLocomotionTrans> ModesOfLocomotionTrans = ViewBag.ModesOfLocomotionTrans;
+    List<RoboticsPrinciplesTrans> RoboticsPrinciplesTrans = ViewBag.RoboticsPrinciplesTrans;
+    List<BusinessTrans> BusinessTrans = ViewBag.BusinessTrans;
+    List<BranchesTrans> BranchesTrans = ViewBag.BranchesTrans;
+    List<TypesTrans> TypesTrans = ViewBag.TypesTrans;
+    List<RobotComponentsAndDesignFeaturesTrans> RobotComponentsAndDesignFeaturesTrans = ViewBag.RobotComponentsAndDesignFeaturesTrans;
+    List<RoboticsDevelopmentAndDevelopmentToolsTrans> RoboticsDevelopmentAndDevelopmentToolsTrans = ViewBag.RoboticsDevelopmentAndDevelopmentToolsTrans;
+    List<RoboticsCompaniesTrans> RoboticsCompaniesTrans = ViewBag.RoboticsCompaniesTrans;
+    List<RoboticsOrganizationsTrans> RoboticsOrganizationsTrans = ViewBag.RoboticsOrganizationsTrans;
+    List<RoboticsCompetitionsTrans> RoboticsCompetitionsTrans = ViewBag.RoboticsCompetitionsTrans;
+    List<InfluentialPeopleTrans> InfluentialPeopleTrans = ViewBag.InfluentialPeopleTrans;
+    List<DegreeOfMaturityTrans> DegreeOfMaturityTrans = ViewBag.DegreeOfMaturityTrans;
+    List<SpecificRobotsTrans> SpecificRobotsTrans = ViewBag.SpecificRobotsTrans;
+
+    List<ContributingFields> SelectedContributingFields = ViewBag.SelectedContributingFields;
+    List<ContributingFields> NotSelectedContributingFields = ViewBag.NotSelectedContributingFields;
+
+    List<ModesOfLocomotion> SelectedModesOfLocomotion = ViewBag.SelectedModesOfLocomotion;
+    List<ModesOfLocomotion> NotSelectedModesOfLocomotion = ViewBag.NotSelectedModesOfLocomotion;
+
+    List<RoboticsPrinciples> SelectedRoboticsPrinciples = ViewBag.SelectedRoboticsPrinciples;
+    List<RoboticsPrinciples> NotSelectedRoboticsPrinciples = ViewBag.NotSelectedRoboticsPrinciples;
+
+    List<Business> SelectedBusiness = ViewBag.SelectedBusiness;
+    List<Business> NotSelectedBusiness = ViewBag.NotSelectedBusiness;
+
+    List<Branches> SelectedBranches = ViewBag.SelectedBranches;
+    List<Branches> NotSelectedBranches = ViewBag.NotSelectedBranches;
+
+    List<Types> SelectedTypes = ViewBag.SelectedTypes;
+    List<Types> NotSelectedTypes = ViewBag.NotSelectedTypes;
+
+    List<RobotComponentsAndDesignFeatures> SelectedRobotComponentsAndDesignFeatures = ViewBag.SelectedRobotComponentsAndDesignFeatures;
+    List<RobotComponentsAndDesignFeatures> NotSelectedRobotComponentsAndDesignFeatures = ViewBag.NotSelectedRobotComponentsAndDesignFeatures;
+
+    List<RoboticsDevelopmentAndDevelopmentTools> SelectedRoboticsDevelopmentAndDevelopmentTools = ViewBag.SelectedRoboticsDevelopmentAndDevelopmentTools;
+    List<RoboticsDevelopmentAndDevelopmentTools> NotSelectedRoboticsDevelopmentAndDevelopmentTools = ViewBag.NotSelectedRoboticsDevelopmentAndDevelopmentTools;
+
+    List<RoboticsCompanies> SelectedRoboticsCompanies = ViewBag.SelectedRoboticsCompanies;
+    List<RoboticsCompanies> NotSelectedRoboticsCompanies = ViewBag.NotSelectedRoboticsCompanies;
+
+    List<RoboticsOrganizations> SelectedRoboticsOrganizations = ViewBag.SelectedRoboticsOrganizations;
+    List<RoboticsOrganizations> NotSelectedRoboticsOrganizations = ViewBag.NotSelectedRoboticsOrganizations;
+
+    List<RoboticsCompetitions> SelectedRoboticsCompetitions = ViewBag.SelectedRoboticsCompetitions;
+    List<RoboticsCompetitions> NotSelectedRoboticsCompetitions = ViewBag.NotSelectedRoboticsCompetitions;
+
+    List<InfluentialPeople> SelectedInfluentialPeople = ViewBag.SelectedInfluentialPeople;
+    List<InfluentialPeople> NotSelectedInfluentialPeople = ViewBag.NotSelectedInfluentialPeople;
+
+    List<DegreeOfMaturity> SelectedDegreeOfMaturity = ViewBag.SelectedDegreeOfMaturity;
+    List<DegreeOfMaturity> NotSelectedDegreeOfMaturity = ViewBag.NotSelectedDegreeOfMaturity;
 
 
 
@@ -45,370 +86,698 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContributingfieldsNavigation)
+                Property category:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DegreeofmaturityNavigation)
+                Selected properties:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BranchesNavigation)
+                Not selected properties:
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BusinessNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InfluentialpeopleNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModesoflocomotionNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RobotcomponentsanddesignfeaturesNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticscompaniesNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticscompetitionsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticsdevelopmentanddevelopmenttoolsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticsorganizationsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoboticsprinciplesNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecificrobotsNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypesNavigation)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in list.Where(L => L.Specificrobots.Equals(ViewBag.Specificrobot)))
-        {
-            <tr>
-                <td>
-@if (item.Contributingfields == null) { }
-else
-{
-
-                    @foreach (var entry in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(item.Contributingfields)))
-                    {   @if (entry.Language == selectedLanguageInt)
-    { @entry.Name}
-                        @if (entry.Name == "")
-                        { @if (entry.Language == 1)
-        {   @entry.Name} }
-                    }
-}
-                </td>
-                <td>
-                    @if (item.Degreeofmaturity == null) { } else { 
-                    @foreach (var entry in DegreeOfMaturityTrans.Where(lm => lm.Degreeofmaturity.Equals(item.Degreeofmaturity)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                        @if (entry.Name == "")
-                    { @if (entry.Language == 1)
-                    {   @entry.Name} }
-                    }
-                    }
-                </td>
-                <td>
-                    @if (item.Branches == null) { }
-                    else
-                    {
-                        @foreach (var entry in BranchesTrans.Where(lm => lm.Branches.Equals(item.Branches)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
+                
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Contributingfields)
+</td>
+                        <td>
+                            @foreach (var property in SelectedContributingFields) {
+                            @foreach (var entry in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(property.Id))) { 
+                            @if (entry.Language == selectedLanguageInt)
+                            {
+                                @if (entry.Name == null)
+                                {
+                                    @foreach (var backup in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(property.Id)))
+                                    { 
+                                        @if (backup.Language == 1)
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="ContributingFields" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                } else { 
+                                <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="ContributingFields"  asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                }
+                            }
+                            } 
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedContributingFields)
+                        {
+                            @foreach (var entry in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in ContributingFieldsTrans.Where(L => L.Contributingfields.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="ContributingFields" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="ContributingFields" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a>
+                                    }
+                                }
+                            }
                         }
-                    }
-                </td>
-                <td>
-                    @if (item.Business == null) { }
-                    else
-                    {
-                        @foreach (var entry in BusinessTrans.Where(lm => lm.Business.Equals(item.Business)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
+                        </td>
+                    </tr>
+                 <tr>
+                        <td>@Html.DisplayNameFor(model => model.Degreeofmaturity)
+</td>
+                        <td>
+                            @foreach (var property in SelectedDegreeOfMaturity)
+                            {
+                                @foreach (var entry in DegreeOfMaturityTrans.Where(L => L.Degreeofmaturity.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in DegreeOfMaturityTrans.Where(L => L.Degreeofmaturity.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="DegreeOfMaturity" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="DegreeOfMaturity" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedDegreeOfMaturity)
+                        {
+                            @foreach (var entry in DegreeOfMaturityTrans.Where(L => L.Degreeofmaturity.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in DegreeOfMaturityTrans.Where(L => L.Degreeofmaturity.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="DegreeOfMaturity" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="DegreeOfMaturity" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Branches)
+                    </td>
+                    <td>
+                        @foreach (var property in SelectedBranches)
+                        {
+                            @foreach (var entry in BranchesTrans.Where(L => L.Branches.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in BranchesTrans.Where(L => L.Branches.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Branches" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Branches" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                    }
+                                }
+                            }
                         }
-                    }
-                </td>
-                <td>
-                    @if (item.Influentialpeople == null) { }
-                    else
+                    </td>
+                    <td>@foreach (var property in NotSelectedBranches)
                     {
-                        @foreach (var entry in InfluentialPeopleTrans.Where(lm => lm.Influentialpeople.Equals(item.Influentialpeople)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Firstname @entry.Lastname}
-                            @if (entry.Lastname == "")
-                            { @if (entry.Language == 1)
-                            {  @entry.Firstname @entry.Lastname} }
+                        @foreach (var entry in BranchesTrans.Where(L => L.Branches.Equals(property.Id)))
+                        {
+                            @if (entry.Language == selectedLanguageInt)
+                            {
+                                @if (entry.Name == null)
+                                {
+                                    @foreach (var backup in BranchesTrans.Where(L => L.Branches.Equals(property.Id)))
+                                    {
+                                        @if (backup.Language == 1)
+                                        {
+                                            <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Branches" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Branches" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                }
+                            }
                         }
-                    }
-                </td>
-                <td>
-                    @if (item.Modesoflocomotion == null) { }
-                    else
-                    {
-                        @foreach (var entry in ModesOfLocomotionTrans.Where(lm => lm.Modesoflocomotion.Equals(item.Modesoflocomotion)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Robotcomponentsanddesignfeatures == null) { }
-                    else
-                    {
-                        @foreach (var entry in RobotComponentsAndDesignFeaturesTrans.Where(lm => lm.Robotcomponentsanddesignfeatures.Equals(item.Robotcomponentsanddesignfeatures)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Roboticscompanies == null) { }
-                    else
-                    {
-                        @foreach (var entry in RoboticsCompaniesTrans.Where(lm => lm.Roboticscompanies.Equals(item.Roboticscompanies)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Roboticscompetitions == null) { }
-                    else
-                    {
-                        @foreach (var entry in RoboticsCompetitionsTrans.Where(lm => lm.Roboticscompetitions.Equals(item.Roboticscompetitions)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Roboticsdevelopmentanddevelopmenttools == null) { }
-                    else
-                    {
-                        @foreach (var entry in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(lm => lm.Roboticsdevelopmentanddevelopmenttools.Equals(item.Roboticsdevelopmentanddevelopmenttools)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Roboticsorganizations == null) { }
-                    else
-                    {
-                        @foreach (var entry in RoboticsOrganizationsTrans.Where(lm => lm.Roboticsorganizations.Equals(item.Roboticsorganizations)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Roboticsprinciples == null) { }
-                    else
-                    {
-                        @foreach (var entry in RoboticsPrinciplesTrans.Where(lm => lm.Roboticsprinciples.Equals(item.Roboticsprinciples)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Specificrobots == null) { }
-                    else
-                    {
-                        @foreach (var entry in SpecificRobotsTrans.Where(lm => lm.Specificrobots.Equals(item.Specificrobots)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    @if (item.Types == null) { }
-                    else
-                    {
-                        @foreach (var entry in TypesTrans.Where(lm => lm.Types.Equals(item.Types)))
-                    {   @if (entry.Language == selectedLanguageInt)
-                    { @entry.Name}
-                            @if (entry.Name == "")
-                            { @if (entry.Language == 1)
-                            {   @entry.Name} }
-                        }
-                    }
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+                    }</td>
+                </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Business)
+</td>
+                        <td>
+                            @foreach (var property in SelectedBusiness)
+                            {
+                                @foreach (var entry in BusinessTrans.Where(L => L.Business.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in BusinessTrans.Where(L => L.Business.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Business" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Business" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedBusiness)
+                        {
+                            @foreach (var entry in BusinessTrans.Where(L => L.Business.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in BusinessTrans.Where(L => L.Business.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Business" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Business" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Influentialpeople)
+</td>
+                        <td>
+                            @foreach (var property in SelectedInfluentialPeople)
+                            {
+                                @foreach (var entry in InfluentialPeopleTrans.Where(L => L.Influentialpeople.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Lastname == null)
+                                        {
+                                            @foreach (var backup in InfluentialPeopleTrans.Where(L => L.Influentialpeople.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="InfluentialPeople" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Lastname (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="InfluentialPeople" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Lastname (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedInfluentialPeople)
+                        {
+                            @foreach (var entry in InfluentialPeopleTrans.Where(L => L.Influentialpeople.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Lastname == null)
+                                    {
+                                        @foreach (var backup in InfluentialPeopleTrans.Where(L => L.Influentialpeople.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="InfluentialPeople" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Lastname (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="InfluentialPeople" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Lastname (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Modesoflocomotion)
+</td>
+                        <td>
+                            @foreach (var property in SelectedModesOfLocomotion)
+                            {
+                                @foreach (var entry in ModesOfLocomotionTrans.Where(L => L.Modesoflocomotion.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in ModesOfLocomotionTrans.Where(L => L.Modesoflocomotion.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="ModesOfLocomotion" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="ModesOfLocomotion" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedModesOfLocomotion)
+                        {
+                            @foreach (var entry in ModesOfLocomotionTrans.Where(L => L.Modesoflocomotion.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in ModesOfLocomotionTrans.Where(L => L.Modesoflocomotion.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="ModesOfLocomotion" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="ModesOfLocomotion" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Robotcomponentsanddesignfeatures)
+</td>
+                        <td>
+                         @foreach (var property in SelectedRobotComponentsAndDesignFeatures)
+                            {
+                                @foreach (var entry in RobotComponentsAndDesignFeaturesTrans.Where(L => L.Robotcomponentsanddesignfeatures.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in RobotComponentsAndDesignFeaturesTrans.Where(L => L.Robotcomponentsanddesignfeatures.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RobotComponentsAndDesignFeatures" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RobotComponentsAndDesignFeatures" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedRobotComponentsAndDesignFeatures)
+                        {
+                            @foreach (var entry in RobotComponentsAndDesignFeaturesTrans.Where(L => L.Robotcomponentsanddesignfeatures.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RobotComponentsAndDesignFeaturesTrans.Where(L => L.Robotcomponentsanddesignfeatures.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RobotComponentsAndDesignFeatures" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RobotComponentsAndDesignFeatures" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Roboticscompanies)
+</td>
+                        <td>
+                          @foreach (var property in SelectedRoboticsCompanies)
+                          {
+                            @foreach (var entry in RoboticsCompaniesTrans.Where(L => L.Roboticscompanies.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsCompaniesTrans.Where(L => L.Roboticscompanies.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompanies" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompanies" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                    }
+                                }
+                            }
+                          }
+                        </td>
+                        <td>@foreach (var property in NotSelectedRoboticsCompanies)
+                        {
+                            @foreach (var entry in RoboticsCompaniesTrans.Where(L => L.Roboticscompanies.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsCompaniesTrans.Where(L => L.Roboticscompanies.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompanies" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompanies" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Roboticscompetitions)
+</td>
+                        <td>
+                            @foreach (var property in SelectedRoboticsCompetitions)
+                            {
+                                @foreach (var entry in RoboticsCompetitionsTrans.Where(L => L.Roboticscompetitions.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in RoboticsCompetitionsTrans.Where(L => L.Roboticscompetitions.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompetitions" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompetitions" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@foreach (var property in NotSelectedRoboticsCompetitions)
+                        {
+                            @foreach (var entry in RoboticsCompetitionsTrans.Where(L => L.Roboticscompetitions.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsCompetitionsTrans.Where(L => L.Roboticscompetitions.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompetitions" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsCompetitions" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Roboticsdevelopmentanddevelopmenttools)
+</td>
+                        <td>
+                          @foreach (var property in SelectedRoboticsDevelopmentAndDevelopmentTools)
+                          {
+                            @foreach (var entry in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(L => L.Roboticsdevelopmentanddevelopmenttools.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(L => L.Roboticsdevelopmentanddevelopmenttools.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsDevelopmentAndDevelopmentTools" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsDevelopmentAndDevelopmentTools" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                    }
+                                }
+                            }
+                          }
+                        </td>
+                        <td>@foreach (var property in NotSelectedRoboticsDevelopmentAndDevelopmentTools)
+                        {
+                            @foreach (var entry in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(L => L.Roboticsdevelopmentanddevelopmenttools.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsDevelopmentAndDevelopmentToolsTrans.Where(L => L.Roboticsdevelopmentanddevelopmenttools.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsDevelopmentAndDevelopmentTools" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsDevelopmentAndDevelopmentTools" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Roboticsorganizations)
+</td>
+                        <td>
+                            @foreach (var property in SelectedRoboticsOrganizations)
+                          {
+                            @foreach (var entry in RoboticsOrganizationsTrans.Where(L => L.Roboticsorganizations.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsOrganizationsTrans.Where(L => L.Roboticsorganizations.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsOrganizations" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsOrganizations" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                    }
+                                }
+                            }
+                          }
+                        </td>
+                        <td>@foreach (var property in NotSelectedRoboticsOrganizations)
+                        {
+                            @foreach (var entry in RoboticsOrganizationsTrans.Where(L => L.Roboticsorganizations.Equals(property.Id)))
+                            {
+                                @if (entry.Language == selectedLanguageInt)
+                                {
+                                    @if (entry.Name == null)
+                                    {
+                                        @foreach (var backup in RoboticsOrganizationsTrans.Where(L => L.Roboticsorganizations.Equals(property.Id)))
+                                        {
+                                            @if (backup.Language == 1)
+                                            {
+                                                <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsOrganizations" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsOrganizations" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                    }
+                                }
+                            }
+                        }</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Roboticsprinciples)
+</td>
+                        <td>
+                            @foreach (var property in SelectedRoboticsPrinciples)
+                            {
+                                @foreach (var entry in RoboticsPrinciplesTrans.Where(L => L.Roboticsprinciples.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in RoboticsPrinciplesTrans.Where(L => L.Roboticsprinciples.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsPrinciples" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsPrinciples" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                        <td> @foreach (var property in NotSelectedRoboticsPrinciples)
+                            {
+                                @foreach (var entry in RoboticsPrinciplesTrans.Where(L => L.Roboticsprinciples.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in RoboticsPrinciplesTrans.Where(L => L.Roboticsprinciples.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsPrinciples" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="RoboticsPrinciples" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Types)
+</td>
+                        <td>
+                            @foreach (var property in SelectedTypes)
+                            {
+                                @foreach (var entry in TypesTrans.Where(L => L.Types.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in TypesTrans.Where(L => L.Types.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Types" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (-)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Remove" asp-route-specificrobots="@Specificrobots" asp-route-property="Types" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (-)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                         <td>
+                            @foreach (var property in NotSelectedTypes)
+                            {
+                                @foreach (var entry in TypesTrans.Where(L => L.Types.Equals(property.Id)))
+                                {
+                                    @if (entry.Language == selectedLanguageInt)
+                                    {
+                                        @if (entry.Name == null)
+                                        {
+                                            @foreach (var backup in TypesTrans.Where(L => L.Types.Equals(property.Id)))
+                                            {
+                                                @if (backup.Language == 1)
+                                                {
+                                                    <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Types" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@backup.Name (+)</a><span> | </span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Add" asp-route-specificrobots="@Specificrobots" asp-route-property="Types" asp-route-id="@property.Id" asp-route-currentpath="@Context.Request.Path">@entry.Name (+)</a><span> | </span>
+                                        }
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                
     </tbody>
 </table>
-
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>SpecificRobotsInRelation</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="form-group">
-            <label asp-for="Specificrobots" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Specificrobots" class="form-control" asp-items="ViewBag.Specificrobots">
-                    <option selected="selected" value="@ViewBag.specificrobot"></option>
-                </select>
-            </div>
-        </div>
-    
-        <div class="form-group">
-            <label asp-for="Modesoflocomotion" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Modesoflocomotion" class="form-control" asp-items="ViewBag.Modesoflocomotion">
-                    <option selected="selected" value="">None</option>
-
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roboticsprinciples" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Roboticsprinciples" class="form-control" asp-items="ViewBag.Roboticsprinciples">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Branches" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Branches" class="form-control" asp-items="ViewBag.Branches">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Business" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Business" class="form-control" asp-items="ViewBag.Business">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Contributingfields" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Contributingfields" class="form-control" asp-items="ViewBag.Contributingfields">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Types" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Types" class="form-control" asp-items="ViewBag.Types">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Robotcomponentsanddesignfeatures" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Robotcomponentsanddesignfeatures" class="form-control" asp-items="ViewBag.Robotcomponentsanddesignfeatures">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roboticsdevelopmentanddevelopmenttools" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Roboticsdevelopmentanddevelopmenttools" class="form-control" asp-items="ViewBag.Roboticsdevelopmentanddevelopmenttools">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roboticscompanies" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Roboticscompanies" class="form-control" asp-items="ViewBag.Roboticscompanies">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roboticsorganizations" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Roboticsorganizations" class="form-control" asp-items="ViewBag.Roboticsorganizations">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roboticscompetitions" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Roboticscompetitions" class="form-control" asp-items="ViewBag.Roboticscompetitions">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Influentialpeople" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Influentialpeople" class="form-control" asp-items="ViewBag.Influentialpeople">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Degreeofmaturity" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Degreeofmaturity" class="form-control" asp-items="ViewBag.Degreeofmaturity">
-                    <option selected="selected" value="">None</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-</form>
 

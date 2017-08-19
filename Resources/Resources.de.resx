@@ -135,6 +135,9 @@
   <data name="LabelForBranches" xml:space="preserve">
     <value>Gebiete</value>
   </data>
+  <data name="LabelForBusiness" xml:space="preserve">
+    <value>Industrien</value>
+  </data>
   <data name="LabelForCollections" xml:space="preserve">
     <value>Sammlungen</value>
   </data>
@@ -147,7 +150,10 @@
   <data name="LabelForData" xml:space="preserve">
     <value>Daten</value>
   </data>
-  <data name="LabelForInfluantialPeople" xml:space="preserve">
+  <data name="LabelForDegreeOfMaturity" xml:space="preserve">
+    <value>Reifegrad</value>
+  </data>
+  <data name="LabelForInfluentialPeople" xml:space="preserve">
     <value>Beeinflussende Personen</value>
   </data>
   <data name="LabelForInfoSources" xml:space="preserve">
@@ -158,6 +164,12 @@
   </data>
   <data name="LabelForLearnMore" xml:space="preserve">
     <value>Erfahren Sie mehr</value>
+  </data>
+  <data name="LabelForModesOfLocomotion" xml:space="preserve">
+    <value>Fortbewegungsformen</value>
+  </data>
+  <data name="LabelForNewEntry" xml:space="preserve">
+    <value>Neuer Eintrag</value>
   </data>
   <data name="LabelForNewspapers" xml:space="preserve">
     <value>Zeitungsartikel</value>
@@ -171,6 +183,12 @@
   <data name="LabelForPagesAbbreviation" xml:space="preserve">
     <value>S.</value>
   </data>
+  <data name="LabelForProperties" xml:space="preserve">
+    <value>Eigenschaften</value>
+  </data>
+  <data name="LabelForPropertyCategory" xml:space="preserve">
+    <value>Eigenschaftskategorie</value>
+  </data>
   <data name="LabelForPublisherAbbreviation" xml:space="preserve">
     <value>(Hg.)</value>
   </data>
@@ -183,6 +201,9 @@
   <data name="LabelForRoboticsCompetition" xml:space="preserve">
     <value>Robotik Wettbewerbe</value>
   </data>
+  <data name="LabelForRoboticsCompetitions" xml:space="preserve">
+    <value>Robotik Wettbewerbe</value>
+  </data>
   <data name="LabelForRoboticsComponentsAndDesignFeatures" xml:space="preserve">
     <value>Robotik Komponenten und Design Features</value>
   </data>
@@ -191,6 +212,9 @@
   </data>
   <data name="LabelForRoboticsOrganization" xml:space="preserve">
     <value>Robotik Organsationen</value>
+  </data>
+  <data name="LabelForRoboticsOrganizations" xml:space="preserve">
+    <value>Robotik Organisationen</value>
   </data>
   <data name="LabelForRoboticsPrinciples" xml:space="preserve">
     <value>Robotik Prinzipien</value>

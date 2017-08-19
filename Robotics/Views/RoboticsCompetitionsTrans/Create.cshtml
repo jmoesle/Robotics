@@ -29,7 +29,9 @@
         <div class="form-group">
             <label asp-for="Roboticscompetitions" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="Roboticscompetitions" class ="form-control" asp-items="ViewBag.Roboticscompetitions"></select>
+                <select asp-for="Roboticscompetitions" class ="form-control" asp-items="ViewBag.Roboticscompetitions">
+                    <option value="0">@Resources.LabelForNewEntry</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

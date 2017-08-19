@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.ContributingfieldsNavigation)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.BusinessNavigation)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BranchesNavigation)
             </th>
             <th>
@@ -30,6 +33,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ContributingfieldsNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessNavigation.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BranchesNavigation.Id)
