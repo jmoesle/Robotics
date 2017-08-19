@@ -190,7 +190,7 @@
     <value>Property Category</value>
   </data>
   <data name="LabelForPublisherAbbreviation" xml:space="preserve">
-    <value />
+    <value> </value>
   </data>
   <data name="LabelForRobot" xml:space="preserve">
     <value>Robot</value>

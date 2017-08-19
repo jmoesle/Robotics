@@ -15,7 +15,7 @@ namespace Robotics.Controllers
 
         public InfoSourcesInRelationsController(RoboticsContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: InfoSourcesInRelations
@@ -24,7 +24,38 @@ namespace Robotics.Controllers
             var roboticsContext = _context.InfoSourcesInRelation.Include(i => i.InfotypesNavigation);
             return View(await roboticsContext.ToListAsync());
         }
+        // GET: InfoSourcesInRelations/Manage
 
+        public async Task<IActionResult> Manage(string tablename, int tableid,  string currentpath)
+        { 
+        ViewData["InfoSourcesInRelation"] =_context.InfoSourcesInRelation.ToList();
+            ViewData["InfoTypes"] = _context.InfoTypes.ToList();
+            ViewData["Websites"] = _context.Websites.ToList();
+            ViewData["Books"] = _context.Books.ToList();
+            ViewData["Journals"] = _context.Journals.ToList();
+            ViewData["Series"] = _context.Series.ToList();
+            ViewData["Collections"] = _context.Collections.ToList();
+            ViewData["Unpublished"] = _context.Unpublished.ToList();
+            ViewData["OfficialStatements"] = _context.OfficialStatements.ToList();
+            ViewData["Newspapers"] = _context.Newspapers.ToList();
+
+            ViewData["tablename"] = currentpath;
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+
+            var infoSourcesInRelation = new List<InfoSourcesInRelation>();
+
+            var AllInfoSourcesInRelation = await _context.InfoSourcesInRelation.ToListAsync();
+            foreach (var item in AllInfoSourcesInRelation.Where(L => L.Tablename.Equals(tablename)))
+            {
+                if (item.Tableid == tableid)
+                {
+                    infoSourcesInRelation.Add(item);
+                }
+            }
+
+            return View(infoSourcesInRelation);
+        }
         // GET: InfoSourcesInRelations/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -25,6 +25,29 @@ namespace Robotics.Controllers
             return View(await roboticsContext.ToListAsync());
         }
 
+        // GET: Addresses
+        public async Task<IActionResult> Manage(string tablename,int tableid)
+        {
+            List<Addresses> roboticsContext = new List<Addresses>();
+            List<Addresses> allAddresses = await _context.Addresses.ToListAsync();
+
+            List<AddressesInRelation> addressesinrelation = await _context.AddressesInRelation.ToListAsync();
+            foreach (var address in addressesinrelation.Where(L => L.Tablename.Equals(tablename)))
+            { if(address.Tableid == tableid)
+                {
+                    foreach (var ad in allAddresses.Where(L => L.Id == address.Addresses))
+                    {
+                        roboticsContext.Add(ad);
+                    }
+                }
+            }
+            ViewData["addresses"] = roboticsContext;
+            ViewData["tablename"] = tablename;
+            ViewData["tableid"] = tableid;
+
+            return View(roboticsContext);
+        }
+
         public async Task<IActionResult> Overview()
         {
             var roboticsContext = _context.Addresses.Include(a => a.CountryNavigation);
@@ -101,22 +124,26 @@ namespace Robotics.Controllers
             {
                 _context.Add(addresses);
                 await _context.SaveChangesAsync();
-                
-                    List<Addresses> alladdresses = new List<Addresses>();
+
+                List<Addresses> alladdresses = new List<Addresses>();
                 alladdresses = await _context.Addresses.ToListAsync();
-                    foreach (Addresses item in alladdresses)
+                foreach (Addresses item in alladdresses)
+                {
+                    if (item == addresses)
                     {
-                        if (item == addresses)
-                        {
-                            id = addresses.Id;
-                        }
+                        id = addresses.Id;
                     }
-                var relation = new AddressesInRelation {Tablename = tablename, Tableid = tableid, Addresses = id };
+                }
+                var relation = new AddressesInRelation { Tablename = tablename, Tableid = tableid, Addresses = id };
                 _context.Add(relation);
                 await _context.SaveChangesAsync();
                 url = currentpath.Split('/');
 
-                return RedirectToAction(url[3], url[2], new { id = url[4] });
+                
+                    return RedirectToAction(url[3], url[2], new { id = url[4] });
+                
+            
+            
                 // return RedirectToAction("CreateAndConnect", "AddressesInRelations", new {tablename = tablename, tableid = tableid, addressesid = id, currentpath = currentpath });
 
   

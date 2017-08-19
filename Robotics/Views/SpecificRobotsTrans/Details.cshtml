@@ -542,7 +542,9 @@
 
 <div class="InfoSources">
     <h3>@Resources.LabelForInfoSources</h3>
-    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="SpecificRobots" asp-route-tableid="@Model.Specificrobots" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
+    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="SpecificRobots" asp-route-tableid="@Model.Specificrobots" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a> |
+    <a asp-action="Manage" asp-controller="InfoSourcesInRelations" asp-route-tablename="SpecificRobots" asp-route-tableid="@Model.Specificrobots" asp-route-currentpath="@Context.Request.Path">Manage @Resources.LabelForInfoSources</a>
+
     @foreach (var item in InfoSourcesInRelation)
     {
         @if ("SpecificRobots" == item.Tablename)

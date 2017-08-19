@@ -1,122 +1,33 @@
-@model Robotics.Models.RoboticsCompaniesTrans
-@using Robotics.Models
-@inject RoboticsContext _context
-
-
-
+@model IEnumerable<Robotics.Models.InfoSourcesInRelation>
+@using Robotics.Models;
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var InfoSourcesInRelation = _context.InfoSourcesInRelation.ToList();
-    var InfoTypes = _context.InfoTypes.ToList();
-    var Websites = _context.Websites.ToList();
-    var Books = _context.Books.ToList();
-    var Journals = _context.Journals.ToList();
-    var Series = _context.Series.ToList();
-    var Collections = _context.Collections.ToList();
-    var Unpublished = _context.Unpublished.ToList();
-    var OfficialStatements = _context.OfficialStatements.ToList();
-    var Newspapers = _context.Newspapers.ToList();
-
-    var AddressesInRelation = _context.AddressesInRelation.ToList();
-    var Addresses = _context.Addresses.ToList();
-    var CountriesTrans = _context.CountriesTrans.ToList();
-    var Languages = _context.Languages.ToList();
+    List<InfoSourcesInRelation> InfoSourcesInRelation = ViewBag.InfoSourcesInRelation;
+    List<InfoTypes> InfoTypes = ViewBag.InfoTypes;
+    List<Websites> Websites = ViewBag.Websites;
+    List<Books> Books = ViewBag.Books;
+    List<Journals> Journals = ViewBag.Journals;
+    List<Series> Series = ViewBag.Series;
+    List<Collections> Collections = ViewBag.Collections;
+    List<Unpublished> Unpublished = ViewBag.Unpublished;
+    List<OfficialStatements> OfficialStatements = ViewBag.OfficialStatements;
+    List<Newspapers> Newspapers = ViewBag.Newspapers;
 
 
-    string selectedLanguage = @Context.Request.Path;
-    int selectedLanguageInt = 1;
-    if (selectedLanguage.Length > 5)
-    {
-        selectedLanguage = selectedLanguage.Substring(1, 2);
-        foreach (var lang in Languages.Where(L => L.Code.ToLower().Equals(selectedLanguage))) { selectedLanguageInt = lang.Id; }
-    };
+
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>RoboticsCompaniesTrans</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LanguageNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LanguageNavigation.Code)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RoboticscompaniesNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RoboticscompaniesNavigation.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-
-<div class="Addresses">
-    <h3>@Resources.LabelForAddresses</h3>
-    <a asp-controller="Addresses" asp-action="CreateAndConnect" asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies" asp-route-currentpath="@Context.Request.Path">+@Resources.LabelForAddresses</a>
-    <a asp-controller="Addresses" asp-action="Manage" asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies" asp-route-currentpath="@Context.Request.Path">Manage @Resources.LabelForAddresses</a>
-
-    @foreach (var item in AddressesInRelation)
-    {
-        @if ("RoboticsCompanies" == item.Tablename)
-        {
-            @if (Model.Roboticscompanies == item.Tableid)
-            {
-                @foreach (var addr in Addresses.Where(A => A.Id.Equals(item.Addresses)))
-                {
-                    <div class="Address">
-                        <h4>@addr.Company</h4>
-                        <p> @addr.Firstname @addr.Lastname</p>
-                        <p> @addr.Street @addr.Streetnumber</p>
-                        <p> @addr.Zip @addr.City</p>
-                        <p> @addr.State</p>
-
-                        @foreach (var coun in CountriesTrans.Where(L => L.Countries.Equals(addr.Country)))
-                        {                        @if (coun.Language == selectedLanguageInt)
-                        { <p>@coun.Name</p>
-                        }
-                            @if (coun.Name == null)
-                            { @if (coun.Language == 1)
-                            {  <p>@coun.Name</p>
-                            }
-                            }
-                        }
-                        <br />
-                    </div>
-                }
-            }
-        }
-    }
-</div>
+<h2>Manage</h2>
 
 <div class="InfoSources">
     <h3>@Resources.LabelForInfoSources</h3>
-    <a asp-action="SelectInfoType" asp-controller="InfoTypes" asp-route-tablename="RoboticsCompanies" asp-route-tableid="@Model.Roboticscompanies" asp-route-currentpath="@Context.Request.Path">+ @Resources.LabelForInfoSources</a>
     @foreach (var item in InfoSourcesInRelation)
     {
-        @if ("RoboticsCompanies" == item.Tablename)
+        @if (@ViewBag.tablename == item.Tablename)
         {
-            @if (Model.Roboticscompanies == item.Tableid)
+            @if (@ViewBag.tableid == item.Tableid)
             {
                 @foreach (var infotype in InfoTypes)
                 {
@@ -126,6 +37,8 @@
                         {
                             @foreach (var infosource in Websites.Where(A => A.Id.Equals(item.Infosourceid)))
                             {
+                                <a asp-action="Edit" asp-controller="Websites"  asp-route-id="@infosource.Id" >Edit</a>
+                                <a asp-action="Delete" asp-controller="Websites" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Website">
                                     @if (infosource.Lastname == null)
                                     {
@@ -141,7 +54,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Books.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            {  <a asp-action="Edit" asp-controller="Books" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Books" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Books">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
@@ -158,7 +72,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Journals.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="Journals" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Journals" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Journals">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
@@ -175,7 +90,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Collections.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="Collections" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Collections" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Collections">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
@@ -192,7 +108,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Series.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="Series" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Series" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Series">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
@@ -209,7 +126,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in OfficialStatements.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="OfficialStatements" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="OfficialStatements" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="OfficialStatements">
                                     <p>
                                         @infosource.Publisher @Resources.LabelForPublisherAbbreviation: @infosource.Title
@@ -226,7 +144,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Newspapers.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="Newspapers" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Newspapers" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Newspapers">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
@@ -243,7 +162,8 @@
                         @if (infotype.Id == item.Infotype)
                         {
                             @foreach (var infosource in Unpublished.Where(A => A.Id.Equals(item.Infosourceid)))
-                            {
+                            { <a asp-action="Edit" asp-controller="Unpublished" asp-route-id="@infosource.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Unpublished" asp-route-id="@infosource.Id">Delete</a>
                                 <div class="Unpublished">
                                     <p>
                                         @infosource.Lastnameauhor1, @infosource.Firstnameauhor1 @if (infosource.Lastnameauhor2 != null)
