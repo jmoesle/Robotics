@@ -241,7 +241,7 @@ namespace Robotics.Models
             {
                 entity.ToTable("degree_of_maturity_trans");
 
-                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.Name).HasMaxLength(200);
 
                 entity.HasOne(d => d.DegreeofmaturityNavigation)
                     .WithMany(p => p.DegreeOfMaturityTrans)
