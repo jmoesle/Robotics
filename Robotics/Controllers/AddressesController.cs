@@ -50,8 +50,25 @@ namespace Robotics.Controllers
 
         public async Task<IActionResult> Overview()
         {
-            var roboticsContext = _context.Addresses.Include(a => a.CountryNavigation);
-            return View(await roboticsContext.ToListAsync());
+            List<Addresses> allAddresses = await _context.Addresses.ToListAsync();
+            //var roboticsContext = _context.Addresses.Include(a => a.CountryNavigation);
+
+            List<Addresses> roboticsContext = new List<Addresses>();
+
+            foreach (var addresse in allAddresses)
+            {
+                if (addresse.Latitude != null)
+                {
+                    if (addresse.Longitude != null)
+                    {
+                        roboticsContext.Add(addresse);
+                    }
+                }
+            }
+
+            return View( roboticsContext);
+
+
         }
 
         // GET: Addresses/Details/5
