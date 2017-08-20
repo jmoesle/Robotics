@@ -81,19 +81,19 @@
                 @foreach (var addr in Addresses.Where(A => A.Id.Equals(item.Addresses)))
                 {
                     <div class="Address">
-                        <h4>@addr.Company</h4>
-                        <p> @addr.Firstname @addr.Lastname</p>
-                        <p> @addr.Street @addr.Streetnumber</p>
-                        <p> @addr.Zip @addr.City</p>
-                        <p> @addr.State</p>
+                        <h4>@addr.Company</h4><br />
+                        <span> @addr.Firstname @addr.Lastname</span><br />
+                        <span> @addr.Street @addr.Streetnumber</span><br />
+                        <span> @addr.Zip @addr.City</span><br />
+                        <span> @addr.State</span><br />
 
                         @foreach (var coun in CountriesTrans.Where(L => L.Countries.Equals(addr.Country)))
                         {                        @if (coun.Language == selectedLanguageInt)
-                        { <p>@coun.Name</p>
+                        { <span>@coun.Name</span>
                         }
                             @if (coun.Name == null)
                             { @if (coun.Language == 1)
-                            {  <p>@coun.Name</p>
+                            {  <span>@coun.Name</span>
                             }
                             }
                         }
